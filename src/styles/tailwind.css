@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #E10600; /* red-600 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #121212; /* gray-950 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #FF0000; /* red-500 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Background Colors */
+    --color-background: #050505; /* black */
+    --color-foreground: #FFFFFF; /* white */
+    
+    /* Surface Colors */
+    --color-card: #1A1A1A; /* gray-900 */
+    --color-card-foreground: #FFFFFF; /* white */
+    
+    /* Popover Colors */
+    --color-popover: #1A1A1A; /* gray-900 */
+    --color-popover-foreground: #FFFFFF; /* white */
+    
+    /* Muted Colors */
+    --color-muted: #1A1A1A; /* gray-900 */
+    --color-muted-foreground: #D4D4D4; /* gray-300 */
+    
+    /* Border & Input */
+    --color-border: rgba(255, 255, 255, 0.1); /* white-10 */
+    --color-input: rgba(255, 255, 255, 0.1); /* white-10 */
+    --color-ring: #E10600; /* red-600 */
+    
+    /* Status Colors */
+    --color-success: #00FF00; /* green-500 */
+    --color-success-foreground: #050505; /* black */
+    
+    --color-warning: #FFA500; /* orange-500 */
+    --color-warning-foreground: #050505; /* black */
+    
+    --color-error: #FF4444; /* red-400 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #FF4444; /* red-400 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Typography */
+    --font-headline: 'Oswald', sans-serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-cta: 'Montserrat', sans-serif;
+    --font-accent: 'Roboto Condensed', sans-serif;
+    
+    /* Spacing */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+  }
+}
