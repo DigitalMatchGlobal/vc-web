@@ -66,7 +66,7 @@ const LandingPageInteractive = () => {
   };
 
   return (
-    <ConversionTrackingWrapper trackPageView pageTitle="Victor Cuellar Elite Performance">
+    <ConversionTrackingWrapper trackPageView pageTitle="Victor Cuellar">
       <div className="min-h-screen bg-background">
         <StickyNavigation onWhatsAppClick={handleWhatsAppClick} />
         <SectionAnchorSystem sections={sections} />
