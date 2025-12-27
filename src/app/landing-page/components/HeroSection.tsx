@@ -72,7 +72,7 @@ const HeroSection = ({ onWhatsAppClick, onPreRegisterClick }: HeroSectionProps) 
         <div className="space-y-8 animate-fade-in-up">
           <div className="space-y-4">
             <h1 className="font-headline font-black text-6xl sm:text-7xl lg:text-8xl text-white tracking-tight">
-              VÍCTOR <span className="text-primary">CUÉLLAR</span>
+              VICTOR <span className="text-primary">CUELLAR</span>
             </h1>
             <p className="font-accent font-bold text-xl sm:text-2xl lg:text-3xl text-muted-foreground uppercase tracking-wider">
               Preparación Física Aplicada al Rendimiento

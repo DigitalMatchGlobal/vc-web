@@ -50,7 +50,7 @@ const LandingPageInteractive = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '5493876000000';
-    const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Víctor Cuéllar.');
+    const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -66,7 +66,7 @@ const LandingPageInteractive = () => {
   };
 
   return (
-    <ConversionTrackingWrapper trackPageView pageTitle="Víctor Cuéllar Elite Performance">
+    <ConversionTrackingWrapper trackPageView pageTitle="Victor Cuellar Elite Performance">
       <div className="min-h-screen bg-background">
         <StickyNavigation onWhatsAppClick={handleWhatsAppClick} />
         <SectionAnchorSystem sections={sections} />

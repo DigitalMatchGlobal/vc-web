@@ -8,7 +8,7 @@ interface FloatingWhatsAppButtonProps {
 }
 
 const sectionMessages: Record<string, string> = {
-  inicio: 'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Víctor Cuéllar.',
+  inicio: 'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.',
   servicios: 'Hola, me gustaría obtener más información sobre los servicios de entrenamiento personalizado.',
   equipo: 'Hola, quisiera conocer más sobre el equipo multidisciplinario y su metodología.',
   planes: 'Hola, estoy interesado en conocer los planes de entrenamiento y sus precios.',

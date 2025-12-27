@@ -92,7 +92,7 @@ const AuthoritySection = () => {
                 "No entreno cuerpos, construyo sistemas de rendimiento. Cada atleta es único, y mi metodología se adapta a sus necesidades específicas para maximizar su potencial."
               </blockquote>
               <div className="mt-4">
-                <div className="font-cta font-bold text-lg text-primary">Víctor Cuéllar</div>
+                <div className="font-cta font-bold text-lg text-primary">Victor Cuellar</div>
                 <div className="font-body text-sm text-muted-foreground">Director Técnico & Preparador Físico</div>
               </div>
             </div>

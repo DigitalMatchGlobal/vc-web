@@ -82,7 +82,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     }
 
     const phoneNumber = '5493876000000';
-    const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Víctor Cuéllar.');
+    const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
     if (typeof window !== 'undefined' && window.gtag) {
@@ -111,7 +111,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             </div>
             <div className="hidden sm:block">
               <h1 className="font-headline font-bold text-xl text-white tracking-wide">
-                VÍCTOR CUÉLLAR
+                VICTOR CUELLAR
               </h1>
               <p className="font-accent text-xs text-muted-foreground uppercase tracking-wider">
                 Elite Performance

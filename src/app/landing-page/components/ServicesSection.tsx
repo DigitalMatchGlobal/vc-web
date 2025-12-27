@@ -78,7 +78,7 @@ const services: Service[] = [
   testimonial: {
     name: 'Diego Romero',
     role: 'Boxeador Amateur',
-    quote: 'Gané mi primer campeonato provincial gracias al sistema integral de Víctor.',
+    quote: 'Gané mi primer campeonato provincial gracias al sistema integral de Victor.',
     image: "https://images.unsplash.com/photo-1606846633645-de485f56ef7e",
     alt: 'Athletic male boxer with championship medal and confident expression in training facility'
   },

@@ -110,7 +110,7 @@ const LocationSection = () => {
                 width="100%"
                 height="100%"
                 loading="lazy"
-                title="Ubicación Víctor Cuéllar Elite Performance"
+                title="Ubicación Victor Cuellar Elite Performance"
                 referrerPolicy="no-referrer-when-downgrade"
                 src={`https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
                 className="border-0"

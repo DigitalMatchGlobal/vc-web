@@ -70,7 +70,7 @@ const MindsetSection = () => {
               "Un cuerpo fuerte sin una mente disciplinada es como un auto de carreras sin piloto. El entrenamiento mental no es opcional, es fundamental."
             </blockquote>
             <div className="mt-4 text-right">
-              <div className="font-cta font-bold text-lg text-primary">Víctor Cuéllar</div>
+              <div className="font-cta font-bold text-lg text-primary">Victor Cuellar</div>
             </div>
           </div>
 

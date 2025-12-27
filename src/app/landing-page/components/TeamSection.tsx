@@ -15,7 +15,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
 {
   id: 'technical',
-  name: 'Víctor Cuéllar',
+  name: 'Victor Cuellar',
   role: 'Dirección Técnica',
   specialization: 'Preparación Física & Metodología',
   credentials: [
