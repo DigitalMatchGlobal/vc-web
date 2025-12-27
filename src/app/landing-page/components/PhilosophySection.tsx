@@ -81,7 +81,7 @@ const PhilosophySection = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="font-headline font-black text-4xl sm:text-5xl lg:text-6xl text-white">
-              No todos entrenan igual,<span className="text-primary">ni deberían hacerlo.</span>
+              No todos entrenan igual, <span className="text-primary"> ni deberían hacerlo.</span>
               </h2>
               <p className="font-body text-lg text-muted-foreground leading-relaxed">
                 Mi forma de trabajar parte de entender a la persona: su edad, su historia, su contexto y su objetivo. A partir de ahí, el entrenamiento se adapta.
