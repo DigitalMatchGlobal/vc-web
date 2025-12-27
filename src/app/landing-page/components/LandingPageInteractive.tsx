@@ -1,69 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import StickyNavigation from '@/components/common/StickyNavigation';
-import FloatingWhatsAppButton from '@/components/common/FloatingWhatsAppButton';
-import SectionAnchorSystem from '@/components/common/SectionAnchorSystem';
-import ConversionTrackingWrapper from '@/components/common/ConversionTrackingWrapper';
-import HeroSection from './HeroSection';
-import AuthoritySection from './AuthoritySection';
-import PhilosophySection from './PhilosophySection';
-import TeamSection from './TeamSection';
-import ServicesSection from './ServicesSection';
-import PlansSection from './PlansSection';
-import MindsetSection from './MindsetSection';
-import LocationSection from './LocationSection';
+// ... (tus otros imports)
 import FAQSection from './FAQSection';
-// import ConversionSection from './ConversionSection'; // 1. COMENTAMOS LA IMPORTACIÓN
+// import ConversionSection from './ConversionSection'; // COMENTADO
+import Footer from './components/Footer'; // <--- AGREGAR ESTE IMPORT (Ajusta la ruta si es necesario, si Footer está en la misma carpeta es './Footer')
 
-const sections = [
-  { id: 'inicio', offset: 0 },
-  { id: 'servicios', offset: 80 },
-  { id: 'equipo', offset: 80 },
-  { id: 'planes', offset: 80 },
-  { id: 'contacto', offset: 80 },
-];
-
-const LandingPageInteractive = () => {
-  const [isHydrated, setIsHydrated] = useState(false);
-  const [activeSection, setActiveSection] = useState('inicio');
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isHydrated) return;
-
-    const handleHashChange = () => {
-      const hash = window.location?.hash?.slice(1);
-      if (hash) {
-        setActiveSection(hash);
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isHydrated]);
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = '5493876000000';
-    const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
-  const handlePreRegisterClick = () => {
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      const offsetPosition = contactSection?.offsetTop - 80;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
+// ... (resto del código igual)
 
   return (
     <ConversionTrackingWrapper trackPageView pageTitle="Victor Cuellar">
@@ -72,20 +14,13 @@ const LandingPageInteractive = () => {
         <SectionAnchorSystem sections={sections} />
         
         <main>
-          <HeroSection 
-            onWhatsAppClick={handleWhatsAppClick}
-            onPreRegisterClick={handlePreRegisterClick}
-          />
-          <AuthoritySection />
-          <PhilosophySection />
-          <TeamSection />
-          <ServicesSection />
-          <PlansSection />
-          <MindsetSection />
+          {/* ... (resto de tus secciones: Hero, Authority, etc) */}
           <LocationSection />
           <FAQSection />
-          {/* <ConversionSection />  // 2. comentado por ahora */} 
+          {/* <ConversionSection /> */}
         </main>
+
+        <Footer />  {/* <--- AGREGAR EL FOOTER AQUÍ, FUERA DEL MAIN */}
 
         {isHydrated && <FloatingWhatsAppButton activeSection={activeSection} />}
       </div>
