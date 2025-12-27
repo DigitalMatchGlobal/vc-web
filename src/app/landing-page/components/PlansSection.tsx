@@ -3,16 +3,15 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
-// Actualizamos la interfaz para soportar los nuevos campos de la imagen
 interface Plan {
   id: string;
   name: string;
-  subtitle: string; // El texto rojo debajo del título (ej: LA BASE DE TODO RENDIMIENTO)
+  subtitle: string;
   description: string;
   features: string[];
-  targetAudience: string; // El texto del recuadro "PARA QUIÉN"
+  targetAudience: string;
   highlighted: boolean;
-  badge?: string; // Para la etiqueta superior (ej: MÁS DINÁMICO)
+  badge?: string;
   icon: string;
 }
 
@@ -29,7 +28,7 @@ const plans: Plan[] = [
     ],
     targetAudience: 'Adultos y deportistas que quieren entrenar bien, sin improvisar.',
     highlighted: false,
-    icon: 'ShieldCheckIcon', // Icono sugerido de fuerza/seguridad
+    icon: 'ShieldCheckIcon',
   },
   {
     id: 'combinado-hibrido',
@@ -44,7 +43,7 @@ const plans: Plan[] = [
     targetAudience: 'Deportistas recreativos que buscan entrenar de manera completa.',
     highlighted: true,
     badge: 'MÁS DINÁMICO',
-    icon: 'TrophyIcon', // Icono sugerido de juego/competencia
+    icon: 'TrophyIcon',
   },
   {
     id: 'patrones',
@@ -58,7 +57,7 @@ const plans: Plan[] = [
     ],
     targetAudience: 'Niños, jóvenes y deportistas construyendo base sólida.',
     highlighted: false,
-    icon: 'ArrowPathIcon', // Icono sugerido de movimiento/técnica
+    icon: 'ArrowPathIcon',
   },
 ];
 
@@ -86,20 +85,25 @@ const PlansSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {plans.map((plan, index) => (
             <div
               key={plan.id}
-              className={`relative flex flex-col bg-white/5 backdrop-blur-md border rounded-lg overflow-hidden transition-all duration-250 ${
+              // AQUI ESTA LA MAGIA DEL HOVER:
+              // Agregamos 'hover:border-primary' y 'hover:shadow' a todas las tarjetas.
+              // Tambien 'hover:-translate-y-2' para que suban un poquito.
+              className={`relative flex flex-col bg-white/5 backdrop-blur-md border rounded-lg overflow-hidden transition-all duration-300 ease-out group 
+                hover:border-primary hover:shadow-[0_0_40px_rgba(225,6,0,0.3)] hover:-translate-y-2
+                ${
                 plan.highlighted
                   ? 'border-primary shadow-[0_0_40px_rgba(225,6,0,0.4)] scale-105 md:scale-110 z-10'
-                  : 'border-white/10 hover:border-primary/50'
+                  : 'border-white/10'
               } ${selectedPlan === plan.id ? 'ring-2 ring-primary' : ''}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Badge superior (ej: MÁS DINÁMICO) */}
               {plan.badge && (
-                <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-4 py-1 rounded-b-lg uppercase tracking-wider">
+                <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-4 py-1 rounded-b-lg uppercase tracking-wider shadow-lg">
                   {plan.badge}
                 </div>
               )}
@@ -108,10 +112,13 @@ const PlansSection = () => {
                 
                 {/* Header de la tarjeta */}
                 <div className="space-y-4">
-                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 ${
-                    plan.highlighted ? 'bg-primary/20 border-2 border-primary' : 'bg-white/10'
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-colors duration-300 ${
+                    plan.highlighted 
+                      ? 'bg-primary/20 border-2 border-primary' 
+                      : 'bg-white/10 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:border-2 border-transparent'
                   }`}>
-                    <Icon name={plan.icon as any} size={28} className={plan.highlighted ? 'text-primary' : 'text-white'} variant="solid" />
+                    {/* El icono tambien cambia de color al hacer hover en la tarjeta gracias a 'group-hover' */}
+                    <Icon name={plan.icon as any} size={28} className={`transition-colors duration-300 ${plan.highlighted ? 'text-primary' : 'text-white group-hover:text-primary'}`} variant="solid" />
                   </div>
 
                   <div>
@@ -137,9 +144,9 @@ const PlansSection = () => {
                   </ul>
                 </div>
 
-                {/* Sección PARA QUIÉN (Caja estilo imagen) */}
+                {/* Sección PARA QUIÉN */}
                 <div className="mt-auto pt-4">
-                  <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                  <div className="bg-white/5 border border-white/10 rounded-lg p-4 group-hover:border-primary/30 transition-colors duration-300">
                     <p className="font-headline font-bold text-xs text-white uppercase mb-1">PARA QUIÉN:</p>
                     <p className="font-body text-sm text-gray-400">
                       {plan.targetAudience}
@@ -147,12 +154,14 @@ const PlansSection = () => {
                   </div>
                 </div>
 
-                {/* Precio y CTA */}
-                <div className="pt-4 space-y-4">
-                  <div className="text-center">
-                    <p className="font-body text-sm text-muted-foreground">
-                      Precio según frecuencia 
-                      <span className="block text-white font-bold">2, 3, 4, 5 días</span>
+                {/* NUEVA SECCIÓN DE PRECIO DESTACADA */}
+                <div className="pt-2 space-y-4">
+                  <div className="text-center bg-white/5 rounded-lg py-3 px-2 border border-white/5 group-hover:border-primary/30 transition-colors">
+                    <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-1">
+                       ELIGE TU FRECUENCIA
+                    </p>
+                    <p className="font-headline font-black text-white text-lg tracking-tight">
+                       2, 3, 4 o 5 DÍAS
                     </p>
                   </div>
 
@@ -163,7 +172,7 @@ const PlansSection = () => {
                       className={`w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 ${
                         plan.highlighted
                           ? 'bg-primary hover:bg-primary/90 text-white shadow-cta'
-                          : 'bg-transparent text-white border border-white/30 hover:border-primary hover:text-primary'
+                          : 'bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white'
                       }`}
                     >
                       Consultar Plan
