@@ -10,8 +10,6 @@ interface Plan {
   description: string;
   features: string[];
   targetAudience: string;
-  highlighted: boolean;
-  badge?: string;
   icon: string;
 }
 
@@ -27,7 +25,6 @@ const plans: Plan[] = [
       'Movimientos seguros',
     ],
     targetAudience: 'Adultos y deportistas que quieren entrenar bien, sin improvisar.',
-    highlighted: false,
     icon: 'ShieldCheckIcon',
   },
   {
@@ -41,8 +38,6 @@ const plans: Plan[] = [
       'Juego y toma de decisiones',
     ],
     targetAudience: 'Deportistas recreativos que buscan entrenar de manera completa.',
-    highlighted: true,
-    badge: 'MÁS DINÁMICO',
     icon: 'TrophyIcon',
   },
   {
@@ -56,7 +51,6 @@ const plans: Plan[] = [
       'Coordinación y control',
     ],
     targetAudience: 'Niños, jóvenes y deportistas construyendo base sólida.',
-    highlighted: false,
     icon: 'ArrowPathIcon',
   },
 ];
@@ -85,40 +79,32 @@ const PlansSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan, index) => (
             <div
               key={plan.id}
-              // AQUI ESTA LA MAGIA DEL HOVER:
-              // Agregamos 'hover:border-primary' y 'hover:shadow' a todas las tarjetas.
-              // Tambien 'hover:-translate-y-2' para que suban un poquito.
-              className={`relative flex flex-col bg-white/5 backdrop-blur-md border rounded-lg overflow-hidden transition-all duration-300 ease-out group 
-                hover:border-primary hover:shadow-[0_0_40px_rgba(225,6,0,0.3)] hover:-translate-y-2
-                ${
-                plan.highlighted
-                  ? 'border-primary shadow-[0_0_40px_rgba(225,6,0,0.4)] scale-105 md:scale-110 z-10'
-                  : 'border-white/10'
-              } ${selectedPlan === plan.id ? 'ring-2 ring-primary' : ''}`}
+              // CLASES PRINCIPALES DEL EFECTO:
+              // 'group': Permite controlar los hijos (badge) cuando hacemos hover al padre.
+              // 'hover:scale-105': Agranda la tarjeta.
+              // 'hover:border-primary': Pone el borde rojo.
+              className={`relative flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden transition-all duration-300 ease-out group 
+                hover:border-primary hover:shadow-[0_0_40px_rgba(225,6,0,0.3)] hover:scale-105 hover:-translate-y-2 z-0 hover:z-10
+                ${selectedPlan === plan.id ? 'ring-2 ring-primary' : ''}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Badge superior (ej: MÁS DINÁMICO) */}
-              {plan.badge && (
-                <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-4 py-1 rounded-b-lg uppercase tracking-wider shadow-lg">
-                  {plan.badge}
-                </div>
-              )}
+              
+              {/* BADGE "SELECCIONAR" (Oculto por defecto, aparece en hover) */}
+              <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-6 py-1 rounded-b-lg uppercase tracking-wider shadow-lg transform -translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                SELECCIONAR
+              </div>
 
               <div className="p-6 sm:p-8 flex-1 flex flex-col space-y-6">
                 
                 {/* Header de la tarjeta */}
                 <div className="space-y-4">
-                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-colors duration-300 ${
-                    plan.highlighted 
-                      ? 'bg-primary/20 border-2 border-primary' 
-                      : 'bg-white/10 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:border-2 border-transparent'
-                  }`}>
-                    {/* El icono tambien cambia de color al hacer hover en la tarjeta gracias a 'group-hover' */}
-                    <Icon name={plan.icon as any} size={28} className={`transition-colors duration-300 ${plan.highlighted ? 'text-primary' : 'text-white group-hover:text-primary'}`} variant="solid" />
+                  {/* El icono cambia a rojo en hover */}
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 bg-white/10 border-2 border-transparent transition-all duration-300 group-hover:bg-primary/20 group-hover:border-primary">
+                    <Icon name={plan.icon as any} size={28} className="text-white transition-colors duration-300 group-hover:text-primary" variant="solid" />
                   </div>
 
                   <div>
@@ -154,10 +140,10 @@ const PlansSection = () => {
                   </div>
                 </div>
 
-                {/* NUEVA SECCIÓN DE PRECIO DESTACADA */}
+                {/* Frecuencia y Botón */}
                 <div className="pt-2 space-y-4">
                   <div className="text-center bg-white/5 rounded-lg py-3 px-2 border border-white/5 group-hover:border-primary/30 transition-colors">
-                    <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-1">
+                    <p className="font-headline font-bold text-[10px] sm:text-xs text-muted-foreground uppercase mb-1">
                        ELIGE TU FRECUENCIA
                     </p>
                     <p className="font-headline font-black text-white text-lg tracking-tight">
@@ -169,11 +155,7 @@ const PlansSection = () => {
                     <button
                       onClick={() => handlePlanSelect(plan.id)}
                       data-cta={`plan-${plan.id}`}
-                      className={`w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 ${
-                        plan.highlighted
-                          ? 'bg-primary hover:bg-primary/90 text-white shadow-cta'
-                          : 'bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white'
-                      }`}
+                      className="w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta"
                     >
                       Consultar Plan
                     </button>
