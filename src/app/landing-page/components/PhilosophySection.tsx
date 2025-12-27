@@ -91,7 +91,7 @@ const PhilosophySection = () => {
 
             <div className="bg-primary/10 border-l-4 border-primary rounded-lg p-6">
               <blockquote className="font-body text-xl text-white italic leading-relaxed">
-                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos."
+                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos"
               </blockquote>
             </div>
 
