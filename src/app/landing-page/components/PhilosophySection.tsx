@@ -81,16 +81,17 @@ const PhilosophySection = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="font-headline font-black text-4xl sm:text-5xl lg:text-6xl text-white">
-                Filosofía de <span className="text-primary">Entrenamiento</span>
+              No todos entrenan igual,<span className="text-primary">ni deberían hacerlo.</span>
               </h2>
               <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                No existen dos atletas iguales. Mi metodología se basa en la personalización absoluta, combinando preparación física, entrenamiento mental y nutrición estratégica.
+                Mi forma de trabajar parte de entender a la persona: su edad, su historia, su contexto y su objetivo. A partir de ahí, el entrenamiento se adapta.
+                Trabajo desde una visión integral del rendimiento, donde el cuerpo, la mente y la disciplina van de la mano.
               </p>
             </div>
 
             <div className="bg-primary/10 border-l-4 border-primary rounded-lg p-6">
               <blockquote className="font-body text-xl text-white italic leading-relaxed">
-                "El rendimiento no es solo físico. Es la suma de cuerpo fuerte, mente disciplinada y nutrición inteligente. Entreno sistemas completos, no solo músculos."
+                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos."
               </blockquote>
             </div>
 
