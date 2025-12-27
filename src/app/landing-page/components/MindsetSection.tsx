@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import AppImage from '@/components/ui/AppImage';
+// import AppImage from '@/components/ui/AppImage'; // Comentado ya que solo se usaba en testimonios
 import Icon from '@/components/ui/AppIcon';
 
+/* // SECCIÓN DE TESTIMONIOS COMENTADA
 interface VideoTestimonial {
   id: string;
   name: string;
@@ -33,15 +34,17 @@ const videoTestimonials: VideoTestimonial[] = [
   thumbnailAlt: 'Male boxer in red gloves with determined expression during training session in boxing gym',
   linkedIn: 'https://linkedin.com'
 }];
-
+*/
 
 const MindsetSection = () => {
-  const [isHydrated, setIsHydrated] = useState(false);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  // const [isHydrated, setIsHydrated] = useState(false); // Ya no es necesario si quitamos la parte dinámica
+  // const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
+  /*
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+  */
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-card to-black overflow-hidden">
@@ -100,6 +103,7 @@ const MindsetSection = () => {
             </div>
           </div>
 
+          {/* // SECCIÓN DE TESTIMONIOS EN VIDEO OCULTA 
           {isHydrated &&
           <div className="space-y-6">
               <h3 className="font-headline font-black text-3xl text-white">Testimonios en Video</h3>
@@ -146,11 +150,12 @@ const MindsetSection = () => {
               )}
               </div>
             </div>
-          }
+          } 
+          */}
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default MindsetSection;
