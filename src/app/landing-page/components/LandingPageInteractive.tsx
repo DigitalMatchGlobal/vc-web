@@ -14,7 +14,7 @@ import PlansSection from './PlansSection';
 import MindsetSection from './MindsetSection';
 import LocationSection from './LocationSection';
 import FAQSection from './FAQSection';
-import ConversionSection from './ConversionSection';
+// import ConversionSection from './ConversionSection'; // 1. COMENTAMOS LA IMPORTACIÓN
 
 const sections = [
   { id: 'inicio', offset: 0 },
@@ -84,7 +84,7 @@ const LandingPageInteractive = () => {
           <MindsetSection />
           <LocationSection />
           <FAQSection />
-          <ConversionSection />
+          {/* <ConversionSection />  // 2. comentado por ahora */} 
         </main>
 
         {isHydrated && <FloatingWhatsAppButton activeSection={activeSection} />}

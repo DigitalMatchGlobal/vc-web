@@ -113,9 +113,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
               <h1 className="font-headline font-bold text-xl text-white tracking-wide">
                 VICTOR CUELLAR
               </h1>
-              <p className="font-accent text-xs text-muted-foreground uppercase tracking-wider">
-                Elite Performance
-              </p>
             </div>
           </Link>
 

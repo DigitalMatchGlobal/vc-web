@@ -74,7 +74,7 @@ const LocationSection = () => {
                   <Icon name="ClockIcon" size={24} className="text-primary" variant="solid" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-cta font-bold text-xl text-white mb-4">Horarios Disponibles</h3>
+                  <h3 className="font-cta font-bold text-xl text-white mb-4">Horarios</h3>
                   <div className="space-y-3">
                     {schedules.map((schedule) => (
                       <div key={schedule.day} className="flex items-center justify-between">

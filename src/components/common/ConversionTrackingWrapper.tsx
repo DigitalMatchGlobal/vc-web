@@ -19,7 +19,7 @@ interface ConversionTrackingWrapperProps {
 const ConversionTrackingWrapper = ({ 
   children, 
   trackPageView = true,
-  pageTitle = 'Victor Cuellar Elite Performance'
+  pageTitle = 'Victor Cuellar'
 }: ConversionTrackingWrapperProps) => {
   useEffect(() => {
     if (trackPageView && typeof window !== 'undefined' && window.gtag) {
