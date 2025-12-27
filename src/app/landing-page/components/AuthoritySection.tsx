@@ -13,7 +13,7 @@ const proofCards: ProofCard[] = [
 {
   id: 'experience',
   icon: 'TrophyIcon',
-  value: '25+ Años',
+  value: '+25 Años',
   label: 'Experiencia Comprobada',
   description: 'Más de dos décadas perfeccionando metodologías de entrenamiento de élite'
 },
