@@ -16,7 +16,7 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  // CAMBIO CLAVE: Agregamos '/' antes del # para asegurar que siempre busque la página de inicio
+  // EL SECRETO: Usamos '/#' para obligar a ir siempre a la página principal
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
@@ -33,7 +33,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Solo calculamos la sección activa si estamos en la página principal
+      // Solo si estamos en la página principal, calculamos qué sección se ve
       if (window.location.pathname === '/') {
         const sections = navigationItems.map(item => ({
           id: item.id,
@@ -53,19 +53,16 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Ejecutar al inicio para verificar estado
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Función simple para manejar el clic
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    // Lógica inteligente:
-    // 1. Si estamos en la Home ('/'), cancelamos la navegación estándar y hacemos scroll suave.
-    // 2. Si estamos en otra página (ej: '/privacy-policy'), dejamos que el Link funcione y nos lleve a la Home.
+    // Si ya estamos en la home, hacemos el scroll suave manual para que se vea lindo
     if (window.location.pathname === '/') {
-      e.preventDefault();
-      setIsMenuOpen(false);
-
+      e.preventDefault(); // Evitamos recargar
       const element = document.getElementById(item.id);
       if (element) {
         const offsetPosition = element.offsetTop - item.offset;
@@ -73,20 +70,15 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
           top: offsetPosition,
           behavior: 'smooth',
         });
-        
-        // Opcional: Actualizar URL sin recargar
-        // window.history.pushState(null, '', `/#${item.id}`);
+        // Actualizamos la URL sin recargar
+        window.history.pushState(null, '', `/#${item.id}`);
       }
-    } else {
-      // Estamos en otra página, dejamos que Next.js nos lleve a la home
       setIsMenuOpen(false);
-    }
-
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'navigation_click', {
-        section: item.id,
-        label: item.label,
-      });
+    } 
+    // Si NO estamos en la home (ej: estamos en un 404 o en Políticas), 
+    // NO prevenimos el default. Dejamos que el Link nos lleve a la home.
+    else {
+      setIsMenuOpen(false);
     }
   };
 
@@ -94,17 +86,9 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     if (onWhatsAppClick) {
       onWhatsAppClick();
     }
-
     const phoneNumber = '5493876000000';
     const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'whatsapp_click', {
-        location: 'navigation',
-        section: activeSection,
-      });
-    }
   };
 
   return (
@@ -130,6 +114,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             </div>
           </Link>
 
+          {/* Menú Desktop */}
           <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <Link
@@ -147,6 +132,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             ))}
           </div>
 
+          {/* Botones Derecha */}
           <div className="flex items-center space-x-4">
             <button
               onClick={handleWhatsAppClick}
@@ -167,6 +153,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
         </div>
       </div>
 
+      {/* Menú Móvil */}
       {isMenuOpen && (
         <div className="lg:hidden bg-card border-t border-border">
           <div className="px-4 py-4 space-y-2">
