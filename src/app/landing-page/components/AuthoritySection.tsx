@@ -118,21 +118,39 @@ const AuthoritySection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2 mb-2">
                     <Icon name="AcademicCapIcon" size={20} className="text-primary" variant="solid" />
-                    <h5 className="font-headline font-bold text-white uppercase tracking-wider text-sm">Formación Premium</h5>
+                    <h5 className="font-headline font-bold text-white uppercase tracking-wider text-sm">Formación Profesional</h5>
                   </div>
                   <ul className="space-y-2">
                     <li className="text-sm text-gray-400 font-body flex items-start">
                       <span className="text-primary mr-2">•</span> Prof. Universitario Ed. Física (UCASAL)
                     </li>
+
+
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">•</span> Especialista Fuerza y Potencia (VBT - IICEFS)
+                      <span className="text-primary mr-2">•</span> Especialista Entrenamiento de la Fuerza (VBT - IICEFS)
                     </li>
+                    
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">•</span> Certificación EFAC & Preparador Físico ATFA
+                      <span className="text-primary mr-2">•</span> Diplomatura Universitaria en Entrenamiento Fuerza y Potencia (G - SE)
                     </li>
+                    
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">•</span> Experto en Rehabilitación (Equipo Physical)
+                      <span className="text-primary mr-2">•</span> Entrenador de Fuerza y Acondicionamiento (Certificación EFAC)
                     </li>
+
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">•</span> Preparador Físico de Fútbol (ATFA)
+                    </li>
+
+
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">•</span> Experto en Rehabilitación, Readaptación y Reentrenamiento (Equipo Physical)
+                    </li>
+
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">•</span> Formación continua con referentes internacionales (EXOS, Michael Boyle, Craig Liebenson, NSCA)
+                    </li>
+                    
                   </ul>
                 </div>
 
@@ -143,18 +161,44 @@ const AuthoritySection = () => {
                     <h5 className="font-headline font-bold text-white uppercase tracking-wider text-sm">Trayectoria Destacada</h5>
                   </div>
                   <ul className="space-y-2">
+                    
+                    
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇪🇸</span> SD Tarazona (España) - Ascenso RFEF
+                      <span className="text-primary mr-2">🇪🇸 ⚽</span> Sociedad Deportiva Tarazona (España) - Ascenso RFEF
                     </li>
+                    
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇦🇷</span> Club Central Norte & Gimnasia y Tiro
-                    </li>
+                      <span className="text-primary mr-2">🇦🇷 ⚽</span> Juventud Antoniana - Ascenso TFA
+                    </li>                    
+
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇦🇷</span> Juventud Antoniana & Sel. Sub-17 Salta
+                      <span className="text-primary mr-2">🇦🇷 ⚽</span> Gimnasia y Tiro - Ascenso TFA
                     </li>
+
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🏑</span> Club Popeye (Hockey) & Los Cachorros
+                      <span className="text-primary mr-2">🇦🇷 ⚽</span> Club Central Norte - Ascenso TFA
                     </li>
+                    
+                    
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">🇦🇷 ⚽</span> Sel. Sub-17 Liga Salteña de Fútbol
+                    </li>
+                    
+                    
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">🇦🇷 ⚽</span> Club La Merced & Club Los Cachorros
+                    </li>
+
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">🇦🇷 🏑</span> Club Popeye (Hockey Femenino)
+                    </li>
+
+                    <li className="text-sm text-gray-400 font-body flex items-start">
+                      <span className="text-primary mr-2">🇦🇷 🇪🇸</span> Experiencia en fútbol profesional, hockey femenino, deportes formativos y preparación física aplicada a la salud y al trabajo en altura.
+                    </li>
+
+
+
                   </ul>
                 </div>
 
