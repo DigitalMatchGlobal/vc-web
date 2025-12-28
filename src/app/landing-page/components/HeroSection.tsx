@@ -71,12 +71,11 @@ const HeroSection = () => {
         .animate-marquee {
           display: flex;
           width: max-content;
-          animation: marquee 30s linear infinite;
+          animation: marquee 40s linear infinite; /* Animación más lenta para mejor lectura */
         }
-        /* Ajuste para móviles: animación un poco más lenta si es necesario */
         @media (max-width: 640px) {
           .animate-marquee {
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite; /* Ajuste para móvil */
           }
         }
       `}</style>
@@ -110,7 +109,7 @@ const HeroSection = () => {
           </p>
 
           {/* CTA ÚNICO - centrado */}
-          <div className="flex flex-col items-center justify-center pt-6 space-y-8">
+          <div className="flex flex-col items-center justify-center pt-6 space-y-8 w-full">
             <a
               href={PRE_REGISTER_URL}
               target="_blank"
@@ -118,10 +117,10 @@ const HeroSection = () => {
               data-cta="hero-preregister"
               className={[
                 'inline-flex items-center justify-center',
-                'px-8 sm:px-12 py-4 sm:py-5', // Padding responsivo
+                'px-8 sm:px-12 py-4 sm:py-5',
                 'bg-primary hover:bg-primary/90',
                 'text-white',
-                'font-cta font-extrabold text-lg sm:text-xl', // Texto responsivo
+                'font-cta font-extrabold text-lg sm:text-xl',
                 'rounded-xl',
                 'shadow-cta',
                 'transition-all duration-500 ease-out',
@@ -133,23 +132,27 @@ const HeroSection = () => {
               Pre-registro Gratuito
             </a>
 
-            {/* --- BARRA DINÁMICA (TICKER) RESPONSIVA --- */}
+            {/* --- BARRA DINÁMICA (TICKER) CORREGIDA --- */}
             {ctaEntered && (
-              <div className="w-full max-w-4xl overflow-hidden py-2 bg-gradient-to-r from-transparent via-white/5 to-transparent border-y border-white/5 backdrop-blur-sm">
+              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-gradient-to-r from-black/20 via-white/5 to-black/20 border-y border-white/5 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="flex items-center opacity-80">
-                      {/* Texto 1: Cupos Limitados */}
-                      <span className="mx-2 sm:mx-4 font-headline font-bold text-[10px] sm:text-sm text-white/90 uppercase tracking-widest italic">
+                  {[...Array(10)].map((_, i) => (
+                    <div key={i} className="flex items-center opacity-90">
+                      {/* Texto 1: Cupos */}
+                      <span className="mx-3 sm:mx-6 font-headline font-bold text-[11px] sm:text-sm text-white uppercase tracking-widest italic">
                         ⚡️ CUPOS LIMITADOS
                       </span>
-                      {/* Texto 2: Reserva Ahora */}
-                      <span className="mx-2 sm:mx-4 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
-                        RESERVA AHORA
+                      {/* Texto 2: Reserva */}
+                      <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
+                        RESERVA TU LUGAR
                       </span>
-                      {/* Texto 3: Entrenamiento Elite */}
-                      <span className="mx-2 sm:mx-4 font-headline font-bold text-[10px] sm:text-sm text-white/90 uppercase tracking-widest italic">
-                        🔥 ENTRENAMIENTO DE ÉLITE
+                      {/* Texto 3: Niveles (Nuevo Texto) */}
+                      <span className="mx-3 sm:mx-6 font-headline font-bold text-[11px] sm:text-sm text-white uppercase tracking-widest italic">
+                        💪 PARA TODOS LOS NIVELES
+                      </span>
+                       {/* Texto 4: Motivación (Nuevo Texto) */}
+                       <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
+                        🚀 TU MEJOR VERSIÓN
                       </span>
                     </div>
                   ))}
