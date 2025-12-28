@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 
 interface NavigationItem {
@@ -38,7 +39,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
-    const NAV_HEIGHT = 80; 
+    const NAV_HEIGHT = 80;
     const ACTIVE_MARGIN = 12;
 
     const handleScroll = () => {
@@ -118,13 +119,23 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
+          {/* LOGO OFICIAL */}
           <Link
             href="/#inicio"
             onClick={(e) => handleNavClick(e, navigationItems[0])}
-            className="flex items-center space-x-3 group"
+            className="flex items-center group"
+            aria-label="Ir a inicio"
           >
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center transition-transform duration-250 group-hover:scale-105">
-              <span className="text-white font-headline font-bold text-xl">VC</span>
+            {/* Contenedor con tamaño estable para que no mueva el layout */}
+            <div className="relative h-10 w-[140px] sm:w-[160px]">
+              <Image
+                src="/assets/images/victor-cuellar-logo.png"
+                alt="Victor Cuellar – Preparación Física Aplicada al Rendimiento"
+                fill
+                priority
+                sizes="(max-width: 640px) 140px, 160px"
+                className="object-contain transition-transform duration-250 group-hover:scale-[1.02]"
+              />
             </div>
           </Link>
 

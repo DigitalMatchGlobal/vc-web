@@ -14,7 +14,7 @@ const schedules: Schedule[] = [
   { day: 'Miércoles', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
   { day: 'Jueves', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
   { day: 'Viernes', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
-  ];
+];
 
 const LocationSection = () => {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -23,11 +23,19 @@ const LocationSection = () => {
     setIsHydrated(true);
   }, []);
 
-  const latitude = -24.7859;
-  const longitude = -65.4117;
+  // ✅ Coordenadas exactas según el link proporcionado
+  // https://www.google.com/maps/place/24%C2%B046'48.7%22S+65%C2%B025'17.9%22W/@-24.780187,-65.42163,17z
+const latitude = -24.7802736;
+const longitude = -65.4217171;
+
+
+  // ✅ URLs de mapas (embed + abrir en Maps)
+  const mapsEmbedUrl = `https://www.google.com/maps?output=embed&q=${latitude},${longitude}&z=17`;
+const mapsOpenUrl =
+  'https://www.google.com/maps/place/Av.+Entre+R%C3%ADos+1450,+A4400BZP+Salta,+Argentina/@-24.7800137,-65.4222145,20z/data=!4m6!3m5!1s0x941bc3c9fc63c7db:0xbf78436d4614f6f2!8m2!3d-24.7802736!4d-65.4217171!16s%2Fg%2F11fm6z6bbv?entry=ttu';
+
 
   return (
-    // CAMBIO: id="ubicacion"
     <section id="ubicacion" className="relative py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
@@ -35,13 +43,15 @@ const LocationSection = () => {
             Ubicación & <span className="text-primary">Horarios</span>
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-            Visítanos en nuestras instalaciones de entrenamiento en Salta
+            Entrenamientos en Salta (Club Central Norte – canchas de fútbol 5)
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Info */}
           <div className="space-y-6">
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 space-y-6">
+              {/* Dirección */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Icon name="MapPinIcon" size={24} className="text-primary" variant="solid" />
@@ -49,13 +59,16 @@ const LocationSection = () => {
                 <div>
                   <h3 className="font-cta font-bold text-xl text-white mb-2">Dirección</h3>
                   <p className="font-body text-muted-foreground">
-                    Av. Entre Ríos 1234<br />
-                    Salta Capital, Salta<br />
-                    Argentina (4400)
+                    Av. Entre Ríos y Alte. Brown
+                    <br />
+                    Club Central Norte – canchas de fútbol 5
+                    <br />
+                    Salta, Salta, Argentina (4400)
                   </p>
                 </div>
               </div>
 
+              {/* Contacto (sin datos inventados) */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Icon name="PhoneIcon" size={24} className="text-primary" variant="solid" />
@@ -63,12 +76,14 @@ const LocationSection = () => {
                 <div>
                   <h3 className="font-cta font-bold text-xl text-white mb-2">Contacto</h3>
                   <p className="font-body text-muted-foreground">
-                    WhatsApp: +54 9 387 600-0000<br />
-                    Email: info@victoracuellar.com
+                    WhatsApp: a confirmar
+                    <br />
+                    Email: info@victorcuellar.fit
                   </p>
                 </div>
               </div>
 
+              {/* Horarios */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Icon name="ClockIcon" size={24} className="text-primary" variant="solid" />
@@ -81,7 +96,10 @@ const LocationSection = () => {
                         <span className="font-body text-sm text-white">{schedule.day}</span>
                         <div className="flex flex-wrap gap-2 justify-end">
                           {schedule.slots.map((slot, idx) => (
-                            <span key={idx} className="font-body text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">
+                            <span
+                              key={idx}
+                              className="font-body text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded"
+                            >
                               {slot}
                             </span>
                           ))}
@@ -89,10 +107,24 @@ const LocationSection = () => {
                       </div>
                     ))}
                   </div>
+
+                  {/* CTA Cómo llegar */}
+                  <div className="mt-6">
+                    <a
+                      href={mapsOpenUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full flex items-center justify-center space-x-3 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-cta font-bold rounded-lg transition-all duration-250 border border-white/10"
+                    >
+                      <Icon name="MapPinIcon" size={22} variant="solid" />
+                      <span>Cómo llegar</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
+            {/* CTA WhatsApp (solo si está hidratado, mantiene tu lógica actual) */}
             {isHydrated && (
               <button
                 data-cta="location-whatsapp"
@@ -104,6 +136,7 @@ const LocationSection = () => {
             )}
           </div>
 
+          {/* Mapa */}
           <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden">
             <div className="aspect-[4/3] w-full h-full">
               <iframe
@@ -112,7 +145,7 @@ const LocationSection = () => {
                 loading="lazy"
                 title="Ubicación Victor Cuellar"
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
+                src={mapsEmbedUrl}
                 className="border-0"
               />
             </div>
