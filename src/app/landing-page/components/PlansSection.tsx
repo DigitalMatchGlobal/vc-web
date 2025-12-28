@@ -157,7 +157,7 @@ const PlansSection = () => {
                       data-cta={`plan-${plan.id}`}
                       className="w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta"
                     >
-                      Consultar Plan
+                      Pre-inscribirme en este plan
                     </button>
                   )}
                 </div>
