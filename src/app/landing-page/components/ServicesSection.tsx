@@ -6,7 +6,7 @@ import Icon from '@/components/ui/AppIcon';
 interface Service {
   id: string;
   title: string;
-  categoryLabel: string; // Antes targetAge
+  categoryLabel: string;
   description: string;
   benefits: string[];
   testimonial: {
@@ -38,10 +38,11 @@ const services: Service[] = [
       role: 'Madre de Tomás',
       quote: 'Mi hijo mejoró su coordinación y confianza. Ahora es titular en su equipo de fútbol.',
       image: "https://img.rocket.new/generatedImages/rocket_gen_img_10ca1ffd3-1763301127083.png",
-      alt: 'Smiling mother in casual wear with proud expression in home setting'
+      alt: 'Madre sonriendo orgullosa'
     },
-    image: "https://images.unsplash.com/photo-1530006086143-a607f37ecc14",
-    imageAlt: 'Young boy in sports uniform practicing soccer drills with focused expression on outdoor field',
+    // FOTO 1: NIÑOS (formacion-ninos.jpg)
+    image: "/assets/images/formacion-ninos.jpg",
+    imageAlt: 'Grupo de niños entrenando fútbol en campo abierto con el entrenador Victor Cuellar',
     icon: 'AcademicCapIcon'
   },
   {
@@ -60,10 +61,11 @@ const services: Service[] = [
       role: 'Alumno de Entrenamiento Personal',
       quote: 'Recuperé mi forma física y gané energía para mi día a día. El cambio fue total.',
       image: "https://img.rocket.new/generatedImages/rocket_gen_img_162cce8a5-1763296745331.png",
-      alt: 'Professional businessman in suit with confident smile in modern office environment'
+      alt: 'Hombre profesional sonriendo'
     },
-    image: "https://img.rocket.new/generatedImages/rocket_gen_img_1a5d2a297-1766532836503.png",
-    imageAlt: 'Fit adult man in athletic wear performing strength training exercise in modern gym facility',
+    // FOTO 2: ADULTO MAYOR (salud-adultos.jpg)
+    image: "/assets/images/salud-adultos.jpg",
+    imageAlt: 'Adulto mayor realizando ejercicios de fuerza con kettlebell supervisado por el entrenador',
     icon: 'HeartIcon'
   },
   {
@@ -82,10 +84,11 @@ const services: Service[] = [
       role: 'Boxeador Competitivo',
       quote: 'Gané mi primer campeonato provincial gracias al sistema integral de Victor.',
       image: "https://images.unsplash.com/photo-1606846633645-de485f56ef7e",
-      alt: 'Athletic male boxer with championship medal and confident expression in training facility'
+      alt: 'Boxeador con medalla'
     },
-    image: "https://img.rocket.new/generatedImages/rocket_gen_img_19fc8bbfc-1766807803497.png",
-    imageAlt: 'Professional male boxer in red gloves throwing powerful punch with intense focus in boxing ring',
+    // FOTO 3: BOXEADOR (alto-rendimiento.jpg)
+    image: "/assets/images/alto-rendimiento.jpg",
+    imageAlt: 'Boxeador profesional golpeando bolsa de entrenamiento con alta intensidad',
     icon: 'TrophyIcon'
   }
 ];
@@ -112,16 +115,16 @@ const ServicesSection = () => {
               }`}
             >
               <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                   <AppImage
                     src={service.image}
                     alt={service.imageAlt}
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute top-4 left-4">
-                    <div className="w-16 h-16 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-primary">
-                      <Icon name={service.icon as any} size={32} className="text-primary" variant="solid" />
+                    <div className="w-16 h-16 bg-primary/90 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                      <Icon name={service.icon as any} size={32} className="text-white" variant="solid" />
                     </div>
                   </div>
                 </div>
@@ -129,13 +132,13 @@ const ServicesSection = () => {
 
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div className="space-y-2">
-                  <div className="font-accent text-sm text-primary uppercase tracking-wide">
+                  <div className="font-accent text-sm text-primary uppercase tracking-wide font-bold">
                     {service.categoryLabel}
                   </div>
                   <h3 className="font-headline font-black text-3xl sm:text-4xl text-white">
                     {service.title}
                   </h3>
-                  <p className="font-body text-lg text-muted-foreground">
+                  <p className="font-body text-lg text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -144,14 +147,14 @@ const ServicesSection = () => {
                   {service.benefits.map((benefit, idx) => (
                     <div key={idx} className="flex items-start space-x-3">
                       <Icon name="CheckCircleIcon" size={20} className="text-primary flex-shrink-0 mt-1" variant="solid" />
-                      <span className="font-body text-white">{benefit}</span>
+                      <span className="font-body text-gray-300">{benefit}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6">
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:border-primary/30 transition-colors">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden border border-white/20">
                       <AppImage
                         src={service.testimonial.image}
                         alt={service.testimonial.alt}
@@ -159,7 +162,7 @@ const ServicesSection = () => {
                       />
                     </div>
                     <div className="flex-1">
-                      <blockquote className="font-body text-white italic mb-2">
+                      <blockquote className="font-body text-white italic mb-2 text-sm leading-relaxed">
                         "{service.testimonial.quote}"
                       </blockquote>
                       <div>
