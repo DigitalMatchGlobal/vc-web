@@ -44,7 +44,6 @@ const proofCards: ProofCard[] = [
 
 const AuthoritySection = () => {
   return (
-    // AGREGAMOS EL ID AQUÍ: id="sobre-mi"
     <section id="sobre-mi" className="relative py-24 bg-gradient-to-b from-black to-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
@@ -57,12 +56,12 @@ const AuthoritySection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {proofCards.map((card, index) =>
+          {proofCards.map((card, index) => (
             <div
               key={card.id}
               className="group bg-card border border-white/10 rounded-lg p-8 hover:border-primary transition-all duration-250 hover:shadow-[0_0_30px_rgba(225,6,0,0.3)]"
-              style={{ animationDelay: `${index * 100}ms` }}>
-
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <div className="flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-250">
                   <Icon name={card.icon as any} size={32} className="text-primary" variant="solid" />
@@ -76,16 +75,16 @@ const AuthoritySection = () => {
                 </div>
               </div>
             </div>
-          )}
+          ))}
         </div>
 
         <div className="mt-16 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary">
-                {/* IMAGEN ACTUALIZADA */}
+                {/* RUTA CORREGIDA: Apunta a /assets/images/... */}
                 <AppImage
-                  src="/images/victor-cuellar-perfil-entrenador.jpg"
+                  src="/assets/images/victor-cuellar-perfil-entrenador.jpg"
                   alt="Victor Cuellar - Director Técnico y Preparador Físico"
                   className="w-full h-full object-cover" 
                 />
