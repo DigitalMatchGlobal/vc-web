@@ -152,7 +152,7 @@ const HeroSection = () => {
                       </span>
                        {/* Texto 4: Motivación (Nuevo Texto) */}
                        <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
-                        ⚡️ PRE-INSCRIPCIONES ABIERTAS
+                        PRE-INSCRIPCIONES ABIERTAS
                       </span>
                     </div>
                   ))}
