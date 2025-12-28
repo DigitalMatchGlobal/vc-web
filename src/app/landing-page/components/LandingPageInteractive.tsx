@@ -14,11 +14,13 @@ import PlansSection from './PlansSection';
 import MindsetSection from './MindsetSection';
 import LocationSection from './LocationSection';
 import FAQSection from './FAQSection';
-// import ConversionSection from './ConversionSection'; // Sección oculta
-import Footer from './Footer'; // <--- CORREGIDO
+import ConversionSection from './ConversionSection';
+import Footer from './Footer';
 
+// SECCIONES ACTUALIZADAS
 const sections = [
   { id: 'inicio', offset: 0 },
+  { id: 'sobre-mi', offset: 80 }, // AGREGADO: Sección Sobre Mí
   { id: 'servicios', offset: 80 },
   { id: 'equipo', offset: 80 },
   { id: 'planes', offset: 80 },

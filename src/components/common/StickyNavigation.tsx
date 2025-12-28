@@ -16,7 +16,8 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
+  // CAMBIO: "Inicio" ahora es "Sobre mí" y apunta a /#sobre-mi
+  { id: 'sobre-mi', label: 'Sobre mí', href: '/#sobre-mi', offset: 80 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
   { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
@@ -109,14 +110,13 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
         <div className="flex items-center justify-between h-20">
           <Link
             href="/#inicio"
-            onClick={(e) => handleNavClick(e, navigationItems[0])}
+            // El logo sigue llevando al inicio (Hero)
+            onClick={(e) => handleNavClick(e, { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 })}
             className="flex items-center space-x-3 group"
           >
-            {/* Solo dejamos el logo VC */}
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center transition-transform duration-250 group-hover:scale-105">
               <span className="text-white font-headline font-bold text-xl">VC</span>
             </div>
-            {/* Se eliminó el div con el texto "VICTOR CUELLAR" */}
           </Link>
 
           <div className="hidden lg:flex items-center space-x-1">
