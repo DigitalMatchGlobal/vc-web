@@ -15,6 +15,54 @@ export const metadata: Metadata = {
   },
 };
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Victor Cuellar',
+  url: 'https://victorcuellar.fit',
+  description:
+    'Preparador físico y profesor universitario con más de 20 años de experiencia en fútbol formativo, profesional y alto rendimiento. Entrenamiento personalizado enfocado en rendimiento, salud integral y trabajo en altura.',
+  jobTitle:
+    'Preparador Físico | Profesor Universitario en Educación Física | Subsecretario de Deportes (Salta)',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Salta',
+    addressRegion: 'Salta',
+    addressCountry: 'AR',
+  },
+  knowsAbout: [
+    'Preparación física',
+    'Alto rendimiento',
+    'Entrenamiento de fuerza',
+    'Potencia',
+    'Readaptación y reentrenamiento',
+    'Fútbol',
+    'Hockey',
+    'Tecnología aplicada al rendimiento',
+    'Control de carga',
+    'Trabajo en altura',
+  ],
+  sameAs: [
+    'https://www.instagram.com/vc_estudio/',
+    'https://www.facebook.com/vc.estudio.gym/',
+  ],
+  affiliation: [
+    { '@type': 'Organization', name: 'Universidad Católica de Salta' },
+    { '@type': 'Organization', name: 'ATFA' },
+    { '@type': 'Organization', name: 'G-SE' },
+    { '@type': 'Organization', name: 'EXOS' },
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Subsecretaría de Deportes – Provincia de Salta',
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Universidad Católica de Salta',
+  },
+};
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,6 +71,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
+        {/* Nivel 3 — Schema.org (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+
         {children}
 
         {/* Rocket scripts */}
