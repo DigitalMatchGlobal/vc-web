@@ -155,10 +155,10 @@ const PlansSection = () => {
                        </div>
                     </div>
 
-                    {/* Turnos */}
+                    {/* FRANJAS HORARIAS (Texto corregido) */}
                     <div>
                        <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
-                          TURNOS DISPONIBLES
+                          FRANJAS HORARIAS
                        </p>
                        <div className="grid grid-cols-1 gap-1 text-xs text-gray-300 font-body">
                           <div className="flex items-center space-x-2">
