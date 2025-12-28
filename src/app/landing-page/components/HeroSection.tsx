@@ -27,6 +27,7 @@ const HeroSection = () => {
     setIsHydrated(true);
   }, []);
 
+  // Animación de entrada SOLO para el CTA
   useEffect(() => {
     const t = setTimeout(() => setCtaEntered(true), 250);
     return () => clearTimeout(t);
@@ -81,9 +82,10 @@ const HeroSection = () => {
       `}</style>
 
       <div className="absolute inset-0 z-0">
+        {/* IMAGEN DE FONDO ACTUALIZADA */}
         <AppImage
-          src="https://images.unsplash.com/photo-1727990435802-4d98b944c6d9"
-          alt="Athletic male boxer in black training gear throwing powerful punch in dark gym with dramatic lighting"
+          src="/assets/images/hero-background.jpg"
+          alt="Atleta realizando entrenamiento de fuerza y potencia con barra"
           className="w-full h-full object-cover"
           priority
         />
@@ -132,7 +134,7 @@ const HeroSection = () => {
               Pre-Inscripción Gratuita
             </a>
 
-            {/* --- BARRA DINÁMICA (TICKER) CORREGIDA --- */}
+            {/* --- BARRA DINÁMICA (TICKER) --- */}
             {ctaEntered && (
               <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-gradient-to-r from-black/20 via-white/5 to-black/20 border-y border-white/5 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
@@ -146,12 +148,12 @@ const HeroSection = () => {
                       <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
                         RESERVA TU LUGAR
                       </span>
-                      {/* Texto 3: Niveles (Nuevo Texto) */}
+                      {/* Texto 3: Niveles */}
                       <span className="mx-3 sm:mx-6 font-headline font-bold text-[11px] sm:text-sm text-white uppercase tracking-widest italic">
                         💪 PARA TODOS LOS NIVELES
                       </span>
-                       {/* Texto 4: Motivación (Nuevo Texto) */}
-                       <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
+                        {/* Texto 4: Motivación */}
+                        <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
                         PRE-INSCRIPCIONES ABIERTAS
                       </span>
                     </div>
