@@ -68,7 +68,20 @@ const PlansSection = () => {
   };
 
   return (
-    <section id="planes" className="relative py-24 bg-gradient-to-b from-black to-card">
+    <section id="planes" className="relative py-24 bg-gradient-to-b from-black to-card overflow-hidden">
+      {/* Estilos para la animación del texto (Ticker) */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
           <h2 className="font-headline font-black text-4xl sm:text-5xl lg:text-6xl text-white">
@@ -208,6 +221,31 @@ const PlansSection = () => {
             <span>Hablar con Victor</span>
           </button>
         </div>
+
+        {/* --- NUEVA BARRA DINÁMICA (TICKER) --- */}
+        <div className="mt-20 -mx-4 sm:-mx-6 lg:-mx-8 border-y border-white/10 bg-white/5 py-4 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"></div>
+          <div className="animate-marquee whitespace-nowrap flex items-center">
+            {/* Contenido duplicado varias veces para crear el bucle infinito */}
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex items-center">
+                <span className="mx-6 font-headline font-black text-xl text-white uppercase tracking-widest italic">
+                  ⚡️ CUPOS LIMITADOS
+                </span>
+                <span className="mx-6 font-cta font-bold text-sm text-primary uppercase tracking-widest">
+                  RESERVA TU LUGAR
+                </span>
+                <span className="mx-6 font-headline font-black text-xl text-white uppercase tracking-widest italic">
+                  ⚡️ PRE-INSCRIPCIONES ABIERTAS
+                </span>
+                <span className="mx-6 font-cta font-bold text-sm text-primary uppercase tracking-widest">
+                  TU MEJOR VERSIÓN
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
