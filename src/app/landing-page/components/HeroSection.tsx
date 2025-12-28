@@ -27,7 +27,6 @@ const HeroSection = () => {
     setIsHydrated(true);
   }, []);
 
-  // Animación de entrada SOLO para el CTA
   useEffect(() => {
     const t = setTimeout(() => setCtaEntered(true), 250);
     return () => clearTimeout(t);
@@ -74,6 +73,12 @@ const HeroSection = () => {
           width: max-content;
           animation: marquee 30s linear infinite;
         }
+        /* Ajuste para móviles: animación un poco más lenta si es necesario */
+        @media (max-width: 640px) {
+          .animate-marquee {
+            animation: marquee 25s linear infinite;
+          }
+        }
       `}</style>
 
       <div className="absolute inset-0 z-0">
@@ -88,18 +93,18 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent opacity-50" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
         <div className="space-y-8 animate-fade-in-up">
           <div className="space-y-4">
-            <h1 className="font-headline font-black text-6xl sm:text-7xl lg:text-8xl text-white tracking-tight">
+            <h1 className="font-headline font-black text-5xl sm:text-7xl lg:text-8xl text-white tracking-tight">
               VICTOR <span className="text-primary">CUELLAR</span>
             </h1>
-            <p className="font-accent font-bold text-xl sm:text-2xl lg:text-3xl text-muted-foreground uppercase tracking-wider">
+            <p className="font-accent font-bold text-lg sm:text-2xl lg:text-3xl text-muted-foreground uppercase tracking-wider">
               Preparación Física Aplicada al Rendimiento
             </p>
           </div>
 
-          <p className="max-w-3xl mx-auto font-body text-lg sm:text-xl text-white/90 leading-relaxed">
+          <p className="max-w-3xl mx-auto font-body text-base sm:text-xl text-white/90 leading-relaxed px-2">
             El único sistema integral de rendimiento en Salta que combina 25+ años de metodología comprobada con
             experiencia multidisciplinaria
           </p>
@@ -113,10 +118,10 @@ const HeroSection = () => {
               data-cta="hero-preregister"
               className={[
                 'inline-flex items-center justify-center',
-                'px-12 py-5',
+                'px-8 sm:px-12 py-4 sm:py-5', // Padding responsivo
                 'bg-primary hover:bg-primary/90',
                 'text-white',
-                'font-cta font-extrabold text-xl',
+                'font-cta font-extrabold text-lg sm:text-xl', // Texto responsivo
                 'rounded-xl',
                 'shadow-cta',
                 'transition-all duration-500 ease-out',
@@ -128,19 +133,22 @@ const HeroSection = () => {
               Pre-registro Gratuito
             </a>
 
-            {/* --- BARRA DINÁMICA (TICKER) AÑADIDA AQUÍ --- */}
+            {/* --- BARRA DINÁMICA (TICKER) RESPONSIVA --- */}
             {ctaEntered && (
               <div className="w-full max-w-4xl overflow-hidden py-2 bg-gradient-to-r from-transparent via-white/5 to-transparent border-y border-white/5 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
                   {[...Array(6)].map((_, i) => (
                     <div key={i} className="flex items-center opacity-80">
-                      <span className="mx-4 font-headline font-bold text-sm text-white/90 uppercase tracking-widest italic">
+                      {/* Texto 1: Cupos Limitados */}
+                      <span className="mx-2 sm:mx-4 font-headline font-bold text-[10px] sm:text-sm text-white/90 uppercase tracking-widest italic">
                         ⚡️ CUPOS LIMITADOS
                       </span>
-                      <span className="mx-4 font-cta font-bold text-xs text-primary uppercase tracking-widest">
+                      {/* Texto 2: Reserva Ahora */}
+                      <span className="mx-2 sm:mx-4 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
                         RESERVA AHORA
                       </span>
-                      <span className="mx-4 font-headline font-bold text-sm text-white/90 uppercase tracking-widest italic">
+                      {/* Texto 3: Entrenamiento Elite */}
+                      <span className="mx-2 sm:mx-4 font-headline font-bold text-[10px] sm:text-sm text-white/90 uppercase tracking-widest italic">
                         🔥 ENTRENAMIENTO DE ÉLITE
                       </span>
                     </div>
@@ -151,18 +159,18 @@ const HeroSection = () => {
           </div>
 
           {isHydrated && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8 sm:pt-10 max-w-4xl mx-auto">
               {counters.map((counter, index) => (
                 <div
                   key={counter.id}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:border-primary transition-all duration-250"
+                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-4 sm:p-6 hover:border-primary transition-all duration-250"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="font-headline font-black text-4xl sm:text-5xl text-primary">
+                  <div className="font-headline font-black text-3xl sm:text-5xl text-primary">
                     {counter.value}
                     {counter.suffix}
                   </div>
-                  <div className="font-body text-sm text-muted-foreground mt-2 uppercase tracking-wide">
+                  <div className="font-body text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 uppercase tracking-wide">
                     {counter.label}
                   </div>
                 </div>
@@ -172,8 +180,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-        <Icon name="ChevronDownIcon" size={32} className="text-white/60" />
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+        <Icon name="ChevronDownIcon" size={32} className="text-white/60 w-6 h-6 sm:w-8 sm:h-8" />
       </div>
     </section>
   );
