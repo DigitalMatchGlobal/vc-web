@@ -31,7 +31,7 @@ const proofCards: ProofCard[] = [
     icon: 'StarIcon',
     value: 'Resultados',
     label: 'Ascensos y Campeonatos',
-    description: 'Parte de procesos exitosos incluyendo el histórico ascenso a Primera RFEF con SD Tarazona.'
+    description: 'Protagonista de procesos campeones y ascensos históricos, tanto a nivel internacional (Primera RFEF en España con SD Tarazona) como en el fútbol salteño, trabajando con Juventud Antoniana, Gimnasia y Tiro y Central Norte.'
   },
   {
     id: 'management',
@@ -164,7 +164,7 @@ const AuthoritySection = () => {
                     
                     
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇪🇸 ⚽</span> Sociedad Deportiva Tarazona (España) - Ascenso RFEF
+                      <span className="text-primary mr-2">🇪🇸 ⚽</span> SD Tarazona (España) - Ascenso RFEF
                     </li>
                     
                     <li className="text-sm text-gray-400 font-body flex items-start">
@@ -194,7 +194,7 @@ const AuthoritySection = () => {
                     </li>
 
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇦🇷 🇪🇸</span> Experiencia en fútbol profesional, hockey femenino, deportes formativos y preparación física aplicada a la salud y al trabajo en altura.
+                      <span className="text-primary mr-2">🇦🇷 🇪🇸</span> Deportes formativos y preparación física aplicada a la salud.
                     </li>
 
 
