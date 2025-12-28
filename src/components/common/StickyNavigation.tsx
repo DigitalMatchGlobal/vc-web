@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 
-
 interface NavigationItem {
   id: string;
   label: string;
@@ -17,11 +16,12 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  { id: 'inicio', label: 'Inicio', href: '#inicio', offset: 0 },
-  { id: 'servicios', label: 'Servicios', href: '#servicios', offset: 80 },
-  { id: 'equipo', label: 'Equipo', href: '#equipo', offset: 80 },
-  { id: 'planes', label: 'Planes', href: '#planes', offset: 80 },
-  { id: 'contacto', label: 'Contacto', href: '#contacto', offset: 80 },
+  // Agregamos la barra '/' antes del # para que funcione desde cualquier página
+  { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
+  { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
+  { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
+  { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
+  { id: 'contacto', label: 'Contacto', href: '/#contacto', offset: 80 },
 ];
 
 const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
@@ -33,18 +33,21 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = navigationItems.map(item => ({
-        id: item.id,
-        element: document.getElementById(item.id),
-      }));
+      // Solo calculamos la sección activa si estamos en la home
+      if (window.location.pathname === '/') {
+        const sections = navigationItems.map(item => ({
+          id: item.id,
+          element: document.getElementById(item.id),
+        }));
 
-      const scrollPosition = window.scrollY + 150;
+        const scrollPosition = window.scrollY + 150;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.element && section.element.offsetTop <= scrollPosition) {
-          setActiveSection(section.id);
-          break;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
+          if (section.element && section.element.offsetTop <= scrollPosition) {
+            setActiveSection(section.id);
+            break;
+          }
         }
       }
     };
@@ -56,16 +59,27 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
+    // Si estamos en la página principal, prevenimos la navegación y hacemos scroll suave
+    if (window.location.pathname === '/' || window.location.pathname === '') {
+      e.preventDefault();
+      setIsMenuOpen(false);
 
-    const element = document.getElementById(item.id);
-    if (element) {
-      const offsetPosition = element.offsetTop - item.offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
+      const element = document.getElementById(item.id);
+      if (element) {
+        const offsetPosition = element.offsetTop - item.offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+        
+        // Actualizamos la URL sin recargar para mantener el historial limpio
+        window.history.pushState(null, '', `/#${item.id}`);
+      }
+    }
+    // Si NO estamos en la home (ej: estamos en Privacy Policy), dejamos que el Link funcione normal
+    // y nos lleve a la home
+    else {
+      setIsMenuOpen(false);
     }
 
     if (typeof window !== 'undefined' && window.gtag) {
@@ -102,7 +116,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link
-            href="#inicio"
+            href="/#inicio"
             onClick={(e) => handleNavClick(e, navigationItems[0])}
             className="flex items-center space-x-3 group"
           >
@@ -123,8 +137,9 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
                 className={`px-4 py-2 rounded-lg font-body font-semibold text-sm transition-all duration-250 ${
-                  activeSection === item.id
-                    ? 'text-primary bg-primary/10 border-b-2 border-primary' :'text-muted-foreground hover:text-white hover:bg-muted'
+                  activeSection === item.id && (typeof window !== 'undefined' && window.location.pathname === '/')
+                    ? 'text-primary bg-primary/10 border-b-2 border-primary' 
+                    : 'text-muted-foreground hover:text-white hover:bg-muted'
                 }`}
               >
                 {item.label}
@@ -162,7 +177,8 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
                 onClick={(e) => handleNavClick(e, item)}
                 className={`block px-4 py-3 rounded-lg font-body font-semibold text-sm transition-all duration-250 ${
                   activeSection === item.id
-                    ? 'text-primary bg-primary/10 border-l-4 border-primary' :'text-muted-foreground hover:text-white hover:bg-muted'
+                    ? 'text-primary bg-primary/10 border-l-4 border-primary' 
+                    : 'text-muted-foreground hover:text-white hover:bg-muted'
                 }`}
               >
                 {item.label}
