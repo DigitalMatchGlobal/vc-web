@@ -25,12 +25,15 @@ const LocationSection = () => {
 
   // ✅ Coordenadas exactas según el link proporcionado
   // https://www.google.com/maps/place/24%C2%B046'48.7%22S+65%C2%B025'17.9%22W/@-24.780187,-65.42163,17z
-  const latitude = -24.780187;
-  const longitude = -65.42163;
+const latitude = -24.7802736;
+const longitude = -65.4217171;
+
 
   // ✅ URLs de mapas (embed + abrir en Maps)
   const mapsEmbedUrl = `https://www.google.com/maps?output=embed&q=${latitude},${longitude}&z=17`;
-  const mapsOpenUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+const mapsOpenUrl =
+  'https://www.google.com/maps/place/Av.+Entre+R%C3%ADos+1450,+A4400BZP+Salta,+Argentina/@-24.7800137,-65.4222145,20z/data=!4m6!3m5!1s0x941bc3c9fc63c7db:0xbf78436d4614f6f2!8m2!3d-24.7802736!4d-65.4217171!16s%2Fg%2F11fm6z6bbv?entry=ttu';
+
 
   return (
     <section id="ubicacion" className="relative py-24 bg-card">
