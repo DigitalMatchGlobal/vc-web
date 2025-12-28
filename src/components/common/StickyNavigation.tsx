@@ -16,7 +16,7 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  // Agregamos la barra '/' antes del # para que funcione desde cualquier página
+  // CAMBIO CLAVE: Agregamos '/' antes del # para asegurar que siempre busque la página de inicio
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
@@ -33,7 +33,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Solo calculamos la sección activa si estamos en la home
+      // Solo calculamos la sección activa si estamos en la página principal
       if (window.location.pathname === '/') {
         const sections = navigationItems.map(item => ({
           id: item.id,
@@ -53,14 +53,16 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    handleScroll(); // Ejecutar al inicio para verificar estado
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    // Si estamos en la página principal, prevenimos la navegación y hacemos scroll suave
-    if (window.location.pathname === '/' || window.location.pathname === '') {
+    // Lógica inteligente:
+    // 1. Si estamos en la Home ('/'), cancelamos la navegación estándar y hacemos scroll suave.
+    // 2. Si estamos en otra página (ej: '/privacy-policy'), dejamos que el Link funcione y nos lleve a la Home.
+    if (window.location.pathname === '/') {
       e.preventDefault();
       setIsMenuOpen(false);
 
@@ -72,13 +74,11 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
           behavior: 'smooth',
         });
         
-        // Actualizamos la URL sin recargar para mantener el historial limpio
-        window.history.pushState(null, '', `/#${item.id}`);
+        // Opcional: Actualizar URL sin recargar
+        // window.history.pushState(null, '', `/#${item.id}`);
       }
-    }
-    // Si NO estamos en la home (ej: estamos en Privacy Policy), dejamos que el Link funcione normal
-    // y nos lleve a la home
-    else {
+    } else {
+      // Estamos en otra página, dejamos que Next.js nos lleve a la home
       setIsMenuOpen(false);
     }
 
@@ -137,7 +137,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
                 className={`px-4 py-2 rounded-lg font-body font-semibold text-sm transition-all duration-250 ${
-                  activeSection === item.id && (typeof window !== 'undefined' && window.location.pathname === '/')
+                  activeSection === item.id
                     ? 'text-primary bg-primary/10 border-b-2 border-primary' 
                     : 'text-muted-foreground hover:text-white hover:bg-muted'
                 }`}
