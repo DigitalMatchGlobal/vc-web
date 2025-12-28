@@ -29,7 +29,6 @@ const HeroSection = () => {
 
   // Animación de entrada SOLO para el CTA
   useEffect(() => {
-    // Espera un poquito para que “caiga” después del texto (se siente más pro)
     const t = setTimeout(() => setCtaEntered(true), 250);
     return () => clearTimeout(t);
   }, []);
@@ -63,6 +62,20 @@ const HeroSection = () => {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      
+      {/* Estilos para la animación del texto (Ticker) */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+      `}</style>
+
       <div className="absolute inset-0 z-0">
         <AppImage
           src="https://images.unsplash.com/photo-1727990435802-4d98b944c6d9"
@@ -91,15 +104,14 @@ const HeroSection = () => {
             experiencia multidisciplinaria
           </p>
 
-          {/* CTA ÚNICO - centrado - con animación de entrada */}
-          <div className="flex items-center justify-center pt-10">
+          {/* CTA ÚNICO - centrado */}
+          <div className="flex flex-col items-center justify-center pt-6 space-y-8">
             <a
               href={PRE_REGISTER_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-cta="hero-preregister"
               className={[
-                // Base CTA (principal)
                 'inline-flex items-center justify-center',
                 'px-12 py-5',
                 'bg-primary hover:bg-primary/90',
@@ -110,16 +122,36 @@ const HeroSection = () => {
                 'transition-all duration-500 ease-out',
                 'focus:outline-none focus:ring-4 focus:ring-primary/40',
                 'hover:scale-105',
-                // Animación de entrada (solo CTA)
                 ctaEntered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95',
               ].join(' ')}
             >
               Pre-registro Gratuito
             </a>
+
+            {/* --- BARRA DINÁMICA (TICKER) AÑADIDA AQUÍ --- */}
+            {ctaEntered && (
+              <div className="w-full max-w-4xl overflow-hidden py-2 bg-gradient-to-r from-transparent via-white/5 to-transparent border-y border-white/5 backdrop-blur-sm">
+                <div className="animate-marquee whitespace-nowrap flex items-center">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="flex items-center opacity-80">
+                      <span className="mx-4 font-headline font-bold text-sm text-white/90 uppercase tracking-widest italic">
+                        ⚡️ CUPOS LIMITADOS
+                      </span>
+                      <span className="mx-4 font-cta font-bold text-xs text-primary uppercase tracking-widest">
+                        RESERVA AHORA
+                      </span>
+                      <span className="mx-4 font-headline font-bold text-sm text-white/90 uppercase tracking-widest italic">
+                        🔥 ENTRENAMIENTO DE ÉLITE
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {isHydrated && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 max-w-4xl mx-auto">
               {counters.map((counter, index) => (
                 <div
                   key={counter.id}
