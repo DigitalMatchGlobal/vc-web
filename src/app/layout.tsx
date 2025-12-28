@@ -9,16 +9,9 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://victorcuellar.fit'),
-  alternates: {
-    canonical: '/',
-  },
-  title: 'Victor Cuellar | Preparación Física Aplicada al Rendimiento',
-  description:
-    'Entrenamiento personalizado enfocado en rendimiento: evaluación, planificación y seguimiento. Alto rendimiento, formación y salud integral. Cupos limitados. Contacto por WhatsApp.',
+  alternates: { canonical: '/' },
   icons: {
-    icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
-    ],
+    icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
 };
 
