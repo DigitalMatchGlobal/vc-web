@@ -104,7 +104,7 @@ const FAQSection = () => {
           </div>
         )}
 
-        {/* <div className="mt-12 text-center">
+        <div className="mt-12 text-center">
           <p className="font-body text-muted-foreground mb-4">¿Tienes más preguntas?</p>
           <button
             data-cta="faq-contact"
@@ -113,7 +113,7 @@ const FAQSection = () => {
             <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
             <span>Hablar con Victor</span>
           </button>
-        </div> */}
+        </div>
       </div>
     </section>
   );
