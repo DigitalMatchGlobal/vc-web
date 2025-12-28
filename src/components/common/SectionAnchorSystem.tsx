@@ -33,7 +33,10 @@ const SectionAnchorSystem = ({ sections }: SectionAnchorSystemProps) => {
     };
 
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
+    // Solo ejecutamos esto si hay un hash real, para evitar saltos innecesarios al cargar
+    if (window.location.hash) {
+      handleHashChange();
+    }
 
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [sections]);
@@ -49,10 +52,18 @@ const SectionAnchorSystem = ({ sections }: SectionAnchorSystemProps) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          const newHash = `#${sectionId}`;
           
-          if (window.location.hash !== newHash) {
-            window.history.replaceState(null, '', newHash);
+          // MODIFICACIÓN CLAVE:
+          // Si la sección es "inicio", limpiamos el hash de la URL.
+          // Si es cualquier otra sección, actualizamos el hash.
+          if (sectionId === 'inicio') {
+            // Reemplazamos la URL actual por la misma pero sin el hash
+             window.history.replaceState(null, '', window.location.pathname);
+          } else {
+            const newHash = `#${sectionId}`;
+            if (window.location.hash !== newHash) {
+              window.history.replaceState(null, '', newHash);
+            }
           }
 
           if (typeof window !== 'undefined' && window.gtag) {
