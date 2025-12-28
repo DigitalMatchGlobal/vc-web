@@ -19,7 +19,7 @@
                 VICTOR <span className="text-primary">CUELLAR</span>
                 </h2>
                 <p className="font-body text-muted-foreground max-w-sm leading-relaxed">
-                Preparación física de alto rendimiento enfocada en potenciar tu juego y fortalecer tu mentalidad.
+                Preparación física basada en metodología profesional para desarrollar rendimiento, juego y mentalidad.
                 </p>
                 
                 {/* Redes Sociales */}
