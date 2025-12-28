@@ -129,7 +129,7 @@ const HeroSection = () => {
                 ctaEntered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95',
               ].join(' ')}
             >
-              Pre-registro Gratuito
+              Pre-Inscripción Gratuita
             </a>
 
             {/* --- BARRA DINÁMICA (TICKER) CORREGIDA --- */}
@@ -152,7 +152,7 @@ const HeroSection = () => {
                       </span>
                        {/* Texto 4: Motivación (Nuevo Texto) */}
                        <span className="mx-3 sm:mx-6 font-cta font-bold text-[10px] sm:text-xs text-primary uppercase tracking-widest">
-                        🚀 TU MEJOR VERSIÓN
+                        ⚡️ PRE-INSCRIPCIONES ABIERTAS
                       </span>
                     </div>
                   ))}
