@@ -15,30 +15,30 @@ const proofCards: ProofCard[] = [
   {
     id: 'experience',
     icon: 'TrophyIcon',
-    value: '+25 Años',
-    label: 'Experiencia Comprobada',
-    description: 'Más de dos décadas perfeccionando metodologías de entrenamiento de élite'
+    value: '+20 Años',
+    label: 'Trayectoria Profesional',
+    description: 'Desde 2004 liderando procesos en fútbol profesional y alto rendimiento en Argentina y España.'
   },
   {
-    id: 'athletes',
-    icon: 'UserGroupIcon',
-    value: '500+',
-    label: 'Atletas Transformados',
-    description: 'Desde niños de 8 años hasta atletas profesionales de alto rendimiento'
-  },
-  {
-    id: 'success',
-    icon: 'ChartBarIcon',
-    value: '95%',
-    label: 'Tasa de Éxito',
-    description: 'Atletas que alcanzan y superan sus objetivos de rendimiento'
-  },
-  {
-    id: 'methodology',
+    id: 'education',
     icon: 'AcademicCapIcon',
-    value: 'Validado',
-    label: 'Metodología Científica',
-    description: 'Sistema respaldado por ciencia del deporte y resultados medibles'
+    value: 'Formación Élite',
+    label: 'Certificación Internacional',
+    description: 'Prof. Universitario, EFAC, VBT y capacitación continua con referentes mundiales (EXOS, Boyle).'
+  },
+  {
+    id: 'achievements',
+    icon: 'StarIcon',
+    value: 'Resultados',
+    label: 'Ascensos y Campeonatos',
+    description: 'Parte de procesos exitosos incluyendo el histórico ascenso a Primera RFEF con SD Tarazona.'
+  },
+  {
+    id: 'management',
+    icon: 'BuildingLibraryIcon',
+    value: 'Gestión',
+    label: 'Liderazgo Deportivo',
+    description: 'Actual Subsecretario de Deportes de Salta, impulsando tecnología y desarrollo deportivo.'
   }
 ];
 
@@ -51,10 +51,11 @@ const AuthoritySection = () => {
             Autoridad <span className="text-primary">Comprobada</span>
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-            Números que respaldan un sistema de entrenamiento que transforma vidas y construye campeones
+            Una carrera dedicada a la excelencia, desde el campo de juego hasta la gestión deportiva de alto nivel.
           </p>
         </div>
 
+        {/* GRID DE 4 TARJETAS SUPERIORES */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {proofCards.map((card, index) => (
             <div
@@ -78,32 +79,8 @@ const AuthoritySection = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary">
-                {/* RUTA CORREGIDA: Apunta a /assets/images/... */}
-                <AppImage
-                  src="/assets/images/victor-cuellar-perfil-entrenador.jpg"
-                  alt="Victor Cuellar - Director Técnico y Preparador Físico"
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <blockquote className="font-body text-xl text-white italic leading-relaxed">
-                "No entreno cuerpos, construyo sistemas de rendimiento. Cada atleta es único, y mi metodología se adapta a sus necesidades específicas para maximizar su potencial."
-              </blockquote>
-              <div className="mt-4">
-                <div className="font-cta font-bold text-lg text-primary">Victor Cuellar</div>
-                <div className="font-body text-sm text-muted-foreground">Director Técnico & Preparador Físico</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default AuthoritySection;
+        {/* SECCIÓN INFERIOR: PERFIL DETALLADO */}
+        <div className="mt-16 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 lg:p-12">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            
+            {/* COLUMNA IZQUIERDA
