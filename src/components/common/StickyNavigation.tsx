@@ -16,20 +16,20 @@ interface StickyNavigationProps {
 }
 
 /**
- * ✅ Orden solicitado:
- * Inicio
- * Sobre mí
- * Equipo
- * Servicios
- * Planes
- * Ubicación
+ * ✅ NUEVO ORDEN SOLICITADO:
+ * 1. Inicio
+ * 2. Sobre mí
+ * 3. Servicios
+ * 4. Planes
+ * 5. Equipo
+ * 6. Ubicación
  */
 const navigationItems: NavigationItem[] = [
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'sobre-mi', label: 'Sobre mí', href: '/#sobre-mi', offset: 80 },
-  { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
+  { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
   { id: 'ubicacion', label: 'Ubicación', href: '/#ubicacion', offset: 80 },
 ];
 
@@ -38,23 +38,16 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
-  /**
-   * ✅ Fix del "activo incorrecto":
-   * Antes: scrollY + 150 (muy abajo) → al caer en #servicios, ya "pisa" equipo/otra sección.
-   * Ahora: scrollY + NAV_HEIGHT + margin → coincide con el header sticky.
-   */
   useEffect(() => {
-    const NAV_HEIGHT = 80; // h-20 = 80px
-    const ACTIVE_MARGIN = 12; // margen chico para estabilidad
+    const NAV_HEIGHT = 80; 
+    const ACTIVE_MARGIN = 12;
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Solo calculamos la sección activa si estamos en la home
       if (window.location.pathname === '/' || window.location.pathname === '') {
         const scrollPosition = window.scrollY + NAV_HEIGHT + ACTIVE_MARGIN;
 
-        // Elegimos la última sección cuyo top esté por encima del "punto de lectura"
         for (let i = navigationItems.length - 1; i >= 0; i--) {
           const id = navigationItems[i].id;
           const el = document.getElementById(id);
@@ -73,7 +66,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   }, []);
 
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    // Si estamos en la home, usamos scroll suave
     if (window.location.pathname === '/' || window.location.pathname === '') {
       e.preventDefault();
       setIsMenuOpen(false);
@@ -82,20 +74,15 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
       if (element) {
         const offsetPosition = element.offsetTop - item.offset;
 
-        // Scroll suave con offset por header
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth',
         });
 
-        // Actualizamos URL sin recargar
         window.history.pushState(null, '', `/#${item.id}`);
-
-        // ✅ Seteamos la sección activa inmediatamente (sensación instantánea)
         setActiveSection(item.id);
       }
     } else {
-      // Si estamos en otra página (ej: Privacy Policy), dejamos que el Link nos lleve a la home
       setIsMenuOpen(false);
     }
 
