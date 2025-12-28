@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: 'Victor Cuellar',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image-v2.png',
         width: 1200,
         height: 630,
         alt: 'Victor Cuellar – Preparación Física Aplicada al Rendimiento',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Victor Cuellar | Preparación Física Aplicada al Rendimiento',
     description:
       'Entrenamiento personalizado enfocado en rendimiento: evaluación, planificación y seguimiento.',
-    images: ['/og-image.png'],
+    images: ['/og-image-v2.png'],
   },
 };
 
