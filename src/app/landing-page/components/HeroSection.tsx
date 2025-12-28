@@ -104,7 +104,7 @@ const HeroSection = () => {
           </div>
 
           <p className="max-w-3xl mx-auto font-body text-base sm:text-xl text-white/90 leading-relaxed px-2">
-            El único sistema integral de rendimiento en Salta que combina 25+ años de metodología comprobada con
+            El único sistema integral de rendimiento en Salta que combina +20 años de metodología comprobada con
             experiencia multidisciplinaria
           </p>
 

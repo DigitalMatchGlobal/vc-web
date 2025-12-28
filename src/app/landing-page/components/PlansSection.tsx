@@ -163,7 +163,7 @@ const PlansSection = () => {
                              2, 3, 4 o 5 veces por semana
                           </p>
                           <p className="font-body text-xs text-gray-400 mt-1">
-                             Duración: 1 hora
+                             Duración: 60 minutos
                           </p>
                        </div>
                     </div>
