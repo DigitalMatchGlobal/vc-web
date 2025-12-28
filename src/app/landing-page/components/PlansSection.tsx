@@ -135,7 +135,7 @@ const PlansSection = () => {
                   </div>
                 </div>
 
-                {/* NUEVA SECCIÓN: INFORMACIÓN DE ENTRENAMIENTO */}
+                {/* INFO ENTRENAMIENTO + BOTÓN GOOGLE FORM */}
                 <div className="space-y-4 pt-2">
                   <div className="bg-white/5 rounded-lg p-4 border border-white/5 space-y-3 group-hover:border-primary/30 transition-colors">
                     
@@ -155,7 +155,7 @@ const PlansSection = () => {
                        </div>
                     </div>
 
-                    {/* FRANJAS HORARIAS (Texto corregido) */}
+                    {/* FRANJAS HORARIAS */}
                     <div>
                        <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
                           FRANJAS HORARIAS
@@ -178,13 +178,16 @@ const PlansSection = () => {
                   </div>
 
                   {isHydrated && (
-                    <button
+                    <a
+                      href="https://forms.gle/qtYAkNHNR8X5rrSx9"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => handlePlanSelect(plan.id)}
                       data-cta={`plan-${plan.id}`}
-                      className="w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta"
+                      className="block w-full text-center py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta cursor-pointer"
                     >
                       Pre-inscribirme
-                    </button>
+                    </a>
                   )}
                 </div>
 
