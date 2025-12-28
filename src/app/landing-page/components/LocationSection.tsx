@@ -9,13 +9,12 @@ interface Schedule {
 }
 
 const schedules: Schedule[] = [
-  { day: 'Lunes', slots: ['06:00 - 08:00', '18:00 - 21:00'] },
-  { day: 'Martes', slots: ['06:00 - 08:00', '18:00 - 21:00'] },
-  { day: 'Miércoles', slots: ['06:00 - 08:00', '18:00 - 21:00'] },
-  { day: 'Jueves', slots: ['06:00 - 08:00', '18:00 - 21:00'] },
-  { day: 'Viernes', slots: ['06:00 - 08:00', '18:00 - 21:00'] },
-  { day: 'Sábado', slots: ['08:00 - 12:00'] },
-];
+  { day: 'Lunes', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
+  { day: 'Martes', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
+  { day: 'Miércoles', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
+  { day: 'Jueves', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
+  { day: 'Viernes', slots: ['08:00 - 12:00', '15:00 - 21:00'] },
+  ];
 
 const LocationSection = () => {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -65,7 +64,7 @@ const LocationSection = () => {
                   <h3 className="font-cta font-bold text-xl text-white mb-2">Contacto</h3>
                   <p className="font-body text-muted-foreground">
                     WhatsApp: +54 9 387 600-0000<br />
-                    Email: info@victorcuellar.com
+                    Email: info@victoracuellar.com
                   </p>
                 </div>
               </div>

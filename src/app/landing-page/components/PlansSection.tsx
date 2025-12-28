@@ -120,7 +120,6 @@ const PlansSection = () => {
                     <p className="font-headline font-bold text-sm text-primary uppercase tracking-wide mt-2">{plan.subtitle}</p>
                   </div>
 
-                  {/* MODIFICACIÓN AQUÍ: Se agrega min-h-[4.5rem] y flex items-end para igualar alturas */}
                   <p className="font-body text-sm text-gray-300 leading-relaxed border-b border-white/10 pb-4 min-h-[4.5rem] flex items-end">
                     {plan.description}
                   </p>
