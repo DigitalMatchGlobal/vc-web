@@ -16,7 +16,6 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  // Agregamos '/' antes del # para asegurar la navegación correcta desde cualquier página
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
@@ -33,7 +32,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Solo calculamos la sección activa si estamos en la página principal
       if (window.location.pathname === '/' || window.location.pathname === '') {
         const sections = navigationItems.map(item => ({
           id: item.id,
@@ -59,7 +57,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    // Si estamos en la home, usamos scroll suave
     if (window.location.pathname === '/' || window.location.pathname === '') {
       e.preventDefault();
       setIsMenuOpen(false);
@@ -71,11 +68,9 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
           top: offsetPosition,
           behavior: 'smooth',
         });
-        // Actualizamos URL sin recargar
         window.history.pushState(null, '', `/#${item.id}`);
       }
     } else {
-      // Si estamos en otra página (ej: Privacy Policy), dejamos que el Link nos lleve a la home
       setIsMenuOpen(false);
     }
 
@@ -117,14 +112,11 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             onClick={(e) => handleNavClick(e, navigationItems[0])}
             className="flex items-center space-x-3 group"
           >
+            {/* Solo dejamos el logo VC */}
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center transition-transform duration-250 group-hover:scale-105">
               <span className="text-white font-headline font-bold text-xl">VC</span>
             </div>
-            <div className="hidden sm:block">
-              <h1 className="font-headline font-bold text-xl text-white tracking-wide">
-                VICTOR CUELLAR
-              </h1>
-            </div>
+            {/* Se eliminó el div con el texto "VICTOR CUELLAR" */}
           </Link>
 
           <div className="hidden lg:flex items-center space-x-1">
