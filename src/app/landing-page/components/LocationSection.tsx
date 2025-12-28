@@ -125,15 +125,18 @@ const mapsOpenUrl =
             </div>
 
             {/* CTA WhatsApp (solo si está hidratado, mantiene tu lógica actual) */}
-            {isHydrated && (
-              <button
-                data-cta="location-whatsapp"
-                className="w-full flex items-center justify-center space-x-3 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-250 shadow-cta"
-              >
-                <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
-                <span>Consultar Disponibilidad</span>
-              </button>
-            )}
+{isHydrated && (
+  <a
+    href={PRE_REGISTER_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    data-cta="location-preregister"
+    className="w-full flex items-center justify-center space-x-3 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-300 shadow-cta focus:outline-none focus:ring-4 focus:ring-primary/40 hover:scale-[1.02]"
+  >
+    <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
+    <span>Pre-Inscripción Gratuita</span>
+  </a>
+)}
           </div>
 
           {/* Mapa */}
