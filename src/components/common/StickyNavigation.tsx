@@ -16,7 +16,7 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  // EL SECRETO: Usamos '/#' para obligar a ir siempre a la página principal
+  // Agregamos '/' antes del # para asegurar la navegación correcta desde cualquier página
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
@@ -33,8 +33,8 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Solo si estamos en la página principal, calculamos qué sección se ve
-      if (window.location.pathname === '/') {
+      // Solo calculamos la sección activa si estamos en la página principal
+      if (window.location.pathname === '/' || window.location.pathname === '') {
         const sections = navigationItems.map(item => ({
           id: item.id,
           element: document.getElementById(item.id),
@@ -58,11 +58,12 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Función simple para manejar el clic
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    // Si ya estamos en la home, hacemos el scroll suave manual para que se vea lindo
-    if (window.location.pathname === '/') {
-      e.preventDefault(); // Evitamos recargar
+    // Si estamos en la home, usamos scroll suave
+    if (window.location.pathname === '/' || window.location.pathname === '') {
+      e.preventDefault();
+      setIsMenuOpen(false);
+
       const element = document.getElementById(item.id);
       if (element) {
         const offsetPosition = element.offsetTop - item.offset;
@@ -70,15 +71,19 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
           top: offsetPosition,
           behavior: 'smooth',
         });
-        // Actualizamos la URL sin recargar
+        // Actualizamos URL sin recargar
         window.history.pushState(null, '', `/#${item.id}`);
       }
+    } else {
+      // Si estamos en otra página (ej: Privacy Policy), dejamos que el Link nos lleve a la home
       setIsMenuOpen(false);
-    } 
-    // Si NO estamos en la home (ej: estamos en un 404 o en Políticas), 
-    // NO prevenimos el default. Dejamos que el Link nos lleve a la home.
-    else {
-      setIsMenuOpen(false);
+    }
+
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'navigation_click', {
+        section: item.id,
+        label: item.label,
+      });
     }
   };
 
@@ -86,9 +91,17 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     if (onWhatsAppClick) {
       onWhatsAppClick();
     }
+
     const phoneNumber = '5493876000000';
     const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'whatsapp_click', {
+        location: 'navigation',
+        section: activeSection,
+      });
+    }
   };
 
   return (
@@ -114,7 +127,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             </div>
           </Link>
 
-          {/* Menú Desktop */}
           <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <Link
@@ -122,7 +134,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
                 className={`px-4 py-2 rounded-lg font-body font-semibold text-sm transition-all duration-250 ${
-                  activeSection === item.id
+                  activeSection === item.id && (typeof window !== 'undefined' && (window.location.pathname === '/' || window.location.pathname === ''))
                     ? 'text-primary bg-primary/10 border-b-2 border-primary' 
                     : 'text-muted-foreground hover:text-white hover:bg-muted'
                 }`}
@@ -132,7 +144,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             ))}
           </div>
 
-          {/* Botones Derecha */}
           <div className="flex items-center space-x-4">
             <button
               onClick={handleWhatsAppClick}
@@ -153,7 +164,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
         </div>
       </div>
 
-      {/* Menú Móvil */}
       {isMenuOpen && (
         <div className="lg:hidden bg-card border-t border-border">
           <div className="px-4 py-4 space-y-2">

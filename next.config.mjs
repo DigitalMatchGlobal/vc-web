@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
-  distDir: process.env.DIST_DIR || '.next',  typescript: {
+  distDir: process.env.DIST_DIR || '.next',
+  typescript: {
     ignoreBuildErrors: true,
   },
   eslint: {
@@ -23,15 +24,7 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/landing-page',
-        permanent: false,
-      },
-    ];
-  },
+  // SE ELIMINÓ EL BLOQUE DE REDIRECTS QUE CAUSABA EL ERROR
   webpack(config) {
     config.module.rules.push({
       test: /\.(jsx|tsx)$/,
