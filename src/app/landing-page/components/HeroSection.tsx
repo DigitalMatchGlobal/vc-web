@@ -92,13 +92,16 @@ const HeroSection = ({ onWhatsAppClick, onPreRegisterClick }: HeroSectionProps) 
               <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
               <span>Consulta WhatsApp</span>
             </button>
-            <button
-              onClick={onPreRegisterClick}
-              data-cta="hero-preregister"
-              className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-cta font-bold text-lg rounded-lg border border-white/20 hover:border-primary transition-all duration-250">
+<a
+  href="https://forms.gle/qtYAkNHNR8X5rrSx9"
+  target="_blank"
+  rel="noopener noreferrer"
+  data-cta="hero-preregister"
+  className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-cta font-bold text-lg rounded-lg border border-white/20 hover:border-primary transition-all duration-250 text-center">
 
-              Pre-registro Gratuito
-            </button>
+  Pre-registro Gratuito
+</a>
+
           </div>
 
           {isHydrated &&
