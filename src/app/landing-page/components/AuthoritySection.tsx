@@ -194,7 +194,7 @@ const AuthoritySection = () => {
                     </li>
 
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2"></span> Experiencia en fútbol profesional, hockey femenino, deportes formativos y preparación física aplicada a la salud y al trabajo en altura.
+                      <span className="text-primary mr-2">🇦🇷</span> Experiencia en fútbol profesional, hockey femenino, deportes formativos y preparación física aplicada a la salud y al trabajo en altura.
                     </li>
 
 
