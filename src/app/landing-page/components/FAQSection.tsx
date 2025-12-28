@@ -12,35 +12,42 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     id: 'faq1',
-    question: '¿Cuál es la diferencia entre tu metodología y un gimnasio tradicional?',
-    answer: 'Mi sistema es integral y personalizado. No solo entreno tu cuerpo, sino que trabajo en conjunto con especialistas en nutrición, psicología deportiva y kinesiología. Cada programa se diseña específicamente para tus objetivos, no es una rutina genérica. Además, incluyo preparación mental y seguimiento nutricional, aspectos que los gimnasios tradicionales no abordan.',
+    question: '¿Qué diferencia esta metodología de un gimnasio tradicional?',
+    answer:
+      'No trabajo con rutinas genéricas ni entrenamientos improvisados. Cada persona pasa por una evaluación inicial y, a partir de ahí, se diseña un sistema de entrenamiento personalizado basado en ciencia del deporte, control de cargas y objetivos reales. Trabajo desde una visión integral del rendimiento: cuerpo, mente y planificación. No entreno personas en serie: entreno procesos.',
   },
   {
     id: 'faq2',
-    question: '¿Necesito experiencia previa en entrenamiento?',
-    answer: 'No es necesario. Trabajo con personas de todos los niveles, desde principiantes absolutos hasta atletas de alto rendimiento. La evaluación inicial me permite diseñar un programa que se ajuste perfectamente a tu nivel actual y progrese de manera segura y efectiva.',
+    question: '¿Cuánta experiencia tiene Victor Cuellar y en qué ámbitos ha trabajado?',
+    answer:
+      'Cuento con más de 20 años de experiencia profesional, trabajando de manera continua desde 2004 en fútbol formativo, profesional, alto rendimiento y gestión deportiva. He sido parte de procesos de ascenso y campeonatos nacionales e internacionales, incluyendo un ascenso a Primera RFEF en España. Actualmente me desempeño como Subsecretario de Deportes de la Provincia de Salta, liderando proyectos de desarrollo deportivo, evaluación con tecnología y alto rendimiento.',
   },
   {
     id: 'faq3',
-    question: '¿Cuánto tiempo toma ver resultados?',
-    answer: 'Los primeros cambios físicos son visibles entre 4-6 semanas con adherencia constante. Sin embargo, las mejoras en energía, fuerza y bienestar general se notan desde las primeras 2 semanas. Los resultados dependen de tu compromiso, objetivos y punto de partida, pero mi metodología está diseñada para generar progreso medible y sostenible.',
+    question: '¿Necesito experiencia previa o ser atleta para entrenar?',
+    answer:
+      'No. Trabajo con personas de todos los niveles: desde quienes recién empiezan hasta deportistas competitivos y de alto rendimiento. El entrenamiento se adapta a tu edad, historia, contexto y objetivo. El nivel no es un requisito; el compromiso sí.',
   },
   {
     id: 'faq4',
-    question: '¿Qué incluye el plan nutricional?',
-    answer: 'El plan nutricional es diseñado por nuestro nutricionista deportivo según tus objetivos (pérdida de grasa, ganancia muscular, rendimiento deportivo). Incluye menús semanales, lista de compras, recetas, timing de comidas y suplementación estratégica si es necesaria. Se ajusta mensualmente según tu progreso.',
+    question: '¿Cómo es la evaluación inicial y qué se analiza?',
+    answer:
+      'La evaluación inicial es un paso clave y tiene un costo adicional. Incluye una evaluación funcional y, según el caso, mediciones de fuerza, potencia, velocidad y control de carga utilizando tecnología (plataformas de fuerza, VBT, fotocélulas). Esto permite entrenar con datos reales y no con suposiciones.',
   },
   {
     id: 'faq5',
-    question: '¿Puedo entrenar si tengo una lesión previa?',
-    answer: 'Sí, de hecho es una de nuestras especialidades. Nuestra kinesióloga evalúa tu condición y diseñamos un programa que trabaje alrededor de la lesión, fortaleciendo áreas compensatorias y acelerando la recuperación. Muchos de nuestros atletas llegaron con lesiones y no solo se recuperaron, sino que mejoraron su rendimiento.',
+    question: '¿Puedo entrenar si tengo una lesión o vengo de una rehabilitación?',
+    answer:
+      'Sí. Trabajo en conjunto con profesionales (kinesiología y derivaciones cuando corresponde) para adaptar el entrenamiento, respetar la lesión, fortalecer zonas compensatorias y lograr una readaptación segura y progresiva. El objetivo no es solo volver a entrenar, sino volver mejor.',
   },
   {
     id: 'faq6',
-    question: '¿Qué diferencia al plan Combinado/Híbrido?',
-    answer: 'Es nuestro plan más completo y popular. Combina la atención personalizada de sesiones individuales (donde trabajo específicamente tus debilidades) con la motivación y energía de sesiones grupales. Obtienes lo mejor de ambos mundos: personalización + comunidad, resultando en mejor adherencia y resultados superiores.',
+    question: '¿Dónde entrenan, cuánto duran las clases y cómo me inscribo?',
+    answer:
+      'Las sesiones duran 60 minutos. Entrenamos en canchas de fútbol 5 del Club Central Norte (Av. Entre Ríos y Alte. Brown, Salta). Para comenzar, escribime por WhatsApp, consultá disponibilidad y completá la pre-inscripción. Los cupos son limitados para garantizar calidad y seguimiento real.',
   },
 ];
+
 
 const FAQSection = () => {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -104,7 +111,7 @@ const FAQSection = () => {
             className="inline-flex items-center space-x-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-250 shadow-cta"
           >
             <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
-            <span>Contáctanos por WhatsApp</span>
+            <span>Hablar con Victor</span>
           </button>
         </div>
       </div>
