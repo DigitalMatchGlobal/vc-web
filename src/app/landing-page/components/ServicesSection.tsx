@@ -10,11 +10,9 @@ interface Service {
   description: string;
   benefits: string[];
   testimonial: {
-    name: string;
+    author: string; // Antes name
     role: string;
     quote: string;
-    image: string;
-    alt: string;
   };
   image: string;
   imageAlt: string;
@@ -34,13 +32,10 @@ const services: Service[] = [
       'Preparación para la vida deportiva'
     ],
     testimonial: {
-      name: 'María González',
-      role: 'Madre de Tomás',
-      quote: 'Mi hijo mejoró su coordinación y confianza. Ahora es titular en su equipo de fútbol.',
-      image: "https://img.rocket.new/generatedImages/rocket_gen_img_10ca1ffd3-1763301127083.png",
-      alt: 'Madre sonriendo orgullosa'
+      author: 'Familia del Club',
+      role: 'Programa de Iniciación',
+      quote: 'Notamos una mejora increíble en la coordinación y la confianza dentro de la cancha en muy poco tiempo.'
     },
-    // FOTO 1: NIÑOS (formacion-ninos.jpg)
     image: "/assets/images/formacion-ninos.jpg",
     imageAlt: 'Grupo de niños entrenando fútbol en campo abierto con el entrenador Victor Cuellar',
     icon: 'AcademicCapIcon'
@@ -57,13 +52,10 @@ const services: Service[] = [
       'Longevidad y salud articular'
     ],
     testimonial: {
-      name: 'Roberto Martínez',
-      role: 'Alumno de Entrenamiento Personal',
-      quote: 'Recuperé mi forma física y gané energía para mi día a día. El cambio fue total.',
-      image: "https://img.rocket.new/generatedImages/rocket_gen_img_162cce8a5-1763296745331.png",
-      alt: 'Hombre profesional sonriendo'
+      author: 'Alumno VC',
+      role: 'Entrenamiento Personalizado',
+      quote: 'Recuperé mi forma física y gané energía para mi día a día. El enfoque en la salud es total.'
     },
-    // FOTO 2: ADULTO MAYOR (salud-adultos.jpg)
     image: "/assets/images/salud-adultos.jpg",
     imageAlt: 'Adulto mayor realizando ejercicios de fuerza con kettlebell supervisado por el entrenador',
     icon: 'HeartIcon'
@@ -80,13 +72,10 @@ const services: Service[] = [
       'Optimización de la recuperación'
     ],
     testimonial: {
-      name: 'Diego Romero',
-      role: 'Boxeador Competitivo',
-      quote: 'Gané mi primer campeonato provincial gracias al sistema integral de Victor.',
-      image: "https://images.unsplash.com/photo-1606846633645-de485f56ef7e",
-      alt: 'Boxeador con medalla'
+      author: 'Atleta Competitivo',
+      role: 'Preparación Física Pro',
+      quote: 'La diferencia física en la competencia fue clave. Me sentí más fuerte y rápido que nunca.'
     },
-    // FOTO 3: BOXEADOR (alto-rendimiento.jpg)
     image: "/assets/images/alto-rendimiento.jpg",
     imageAlt: 'Boxeador profesional golpeando bolsa de entrenamiento con alta intensidad',
     icon: 'TrophyIcon'
@@ -152,22 +141,20 @@ const ServicesSection = () => {
                   ))}
                 </div>
 
+                {/* TARJETA DE RESEÑA (Sin foto personal) */}
                 <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:border-primary/30 transition-colors">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden border border-white/20">
-                      <AppImage
-                        src={service.testimonial.image}
-                        alt={service.testimonial.alt}
-                        className="w-full h-full object-cover" 
-                      />
+                    {/* Icono de Estrella en lugar de foto */}
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                      <Icon name="StarIcon" size={24} className="text-primary" variant="solid" />
                     </div>
                     <div className="flex-1">
                       <blockquote className="font-body text-white italic mb-2 text-sm leading-relaxed">
                         "{service.testimonial.quote}"
                       </blockquote>
                       <div>
-                        <div className="font-cta font-bold text-sm text-primary">{service.testimonial.name}</div>
-                        <div className="font-body text-xs text-muted-foreground">{service.testimonial.role}</div>
+                        <div className="font-cta font-bold text-sm text-primary">{service.testimonial.author}</div>
+                        <div className="font-body text-xs text-muted-foreground uppercase tracking-wide">{service.testimonial.role}</div>
                       </div>
                     </div>
                   </div>
