@@ -136,7 +136,7 @@ const HeroSection = () => {
             {ctaEntered && (
               <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-gradient-to-r from-black/20 via-white/5 to-black/20 border-y border-white/5 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
-                  {[...Array(10)].map((_, i) => (
+                  {[...Array(4)].map((_, i) => (
                     <div key={i} className="flex items-center opacity-90">
                       {/* Texto 1: Cupos */}
                       <span className="mx-3 sm:mx-6 font-headline font-bold text-[11px] sm:text-sm text-white uppercase tracking-widest italic">
