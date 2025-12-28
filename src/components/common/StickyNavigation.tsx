@@ -16,20 +16,19 @@ interface StickyNavigationProps {
 }
 
 /**
- * ✅ NUEVO ORDEN SOLICITADO:
+ * ✅ ORDEN DEL MENÚ (Equipo oculto temporalmente)
  * 1. Inicio
  * 2. Sobre mí
  * 3. Servicios
  * 4. Planes
- * 5. Equipo
- * 6. Ubicación
+ * 5. Ubicación
  */
 const navigationItems: NavigationItem[] = [
   { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'sobre-mi', label: 'Sobre mí', href: '/#sobre-mi', offset: 80 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
-  { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
+  // { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 }, // OCULTO TEMPORALMENTE
   { id: 'ubicacion', label: 'Ubicación', href: '/#ubicacion', offset: 80 },
 ];
 
