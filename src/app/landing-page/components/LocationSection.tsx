@@ -28,7 +28,8 @@ const LocationSection = () => {
   const longitude = -65.4117;
 
   return (
-    <section id="contacto" className="relative py-24 bg-card">
+    // CAMBIO: id="ubicacion"
+    <section id="ubicacion" className="relative py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
           <h2 className="font-headline font-black text-4xl sm:text-5xl lg:text-6xl text-white">

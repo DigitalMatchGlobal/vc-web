@@ -16,12 +16,13 @@ interface StickyNavigationProps {
 }
 
 const navigationItems: NavigationItem[] = [
-  // CAMBIO: "Inicio" ahora es "Sobre mí" y apunta a /#sobre-mi
+  { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
   { id: 'sobre-mi', label: 'Sobre mí', href: '/#sobre-mi', offset: 80 },
   { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
   { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 },
   { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
-  { id: 'contacto', label: 'Contacto', href: '/#contacto', offset: 80 },
+  // CAMBIO: Contacto -> Ubicación
+  { id: 'ubicacion', label: 'Ubicación', href: '/#ubicacion', offset: 80 },
 ];
 
 const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
@@ -110,7 +111,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
         <div className="flex items-center justify-between h-20">
           <Link
             href="/#inicio"
-            // El logo sigue llevando al inicio (Hero)
             onClick={(e) => handleNavClick(e, { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 })}
             className="flex items-center space-x-3 group"
           >

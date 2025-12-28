@@ -17,14 +17,14 @@ import FAQSection from './FAQSection';
 import ConversionSection from './ConversionSection';
 import Footer from './Footer';
 
-// SECCIONES ACTUALIZADAS
+// CAMBIO: contacto -> ubicacion
 const sections = [
   { id: 'inicio', offset: 0 },
-  { id: 'sobre-mi', offset: 80 }, // AGREGADO: Sección Sobre Mí
+  { id: 'sobre-mi', offset: 80 },
   { id: 'servicios', offset: 80 },
   { id: 'equipo', offset: 80 },
   { id: 'planes', offset: 80 },
-  { id: 'contacto', offset: 80 },
+  { id: 'ubicacion', offset: 80 },
 ];
 
 const LandingPageInteractive = () => {
@@ -58,7 +58,8 @@ const LandingPageInteractive = () => {
   };
 
   const handlePreRegisterClick = () => {
-    const contactSection = document.getElementById('contacto');
+    // CAMBIO: Buscamos 'ubicacion' en lugar de 'contacto'
+    const contactSection = document.getElementById('ubicacion');
     if (contactSection) {
       const offsetPosition = contactSection?.offsetTop - 80;
       window.scrollTo({

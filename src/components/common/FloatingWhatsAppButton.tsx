@@ -7,12 +7,14 @@ interface FloatingWhatsAppButtonProps {
   activeSection?: string;
 }
 
+// CAMBIO: contacto -> ubicacion
 const sectionMessages: Record<string, string> = {
   inicio: 'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.',
+  'sobre-mi': 'Hola, quisiera conocer más sobre la trayectoria y experiencia de Victor.',
   servicios: 'Hola, me gustaría obtener más información sobre los servicios de entrenamiento personalizado.',
   equipo: 'Hola, quisiera conocer más sobre el equipo multidisciplinario y su metodología.',
   planes: 'Hola, estoy interesado en conocer los planes de entrenamiento y sus precios.',
-  contacto: 'Hola, me gustaría agendar una consulta inicial para evaluar mis objetivos.',
+  ubicacion: 'Hola, me gustaría saber más sobre la ubicación y horarios de entrenamiento.',
 };
 
 const FloatingWhatsAppButton = ({ activeSection = 'inicio' }: FloatingWhatsAppButtonProps) => {
