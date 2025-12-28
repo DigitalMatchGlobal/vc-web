@@ -83,26 +83,21 @@ const PlansSection = () => {
           {plans.map((plan, index) => (
             <div
               key={plan.id}
-              // CLASES PRINCIPALES DEL EFECTO:
-              // 'group': Permite controlar los hijos (badge) cuando hacemos hover al padre.
-              // 'hover:scale-105': Agranda la tarjeta.
-              // 'hover:border-primary': Pone el borde rojo.
               className={`relative flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden transition-all duration-300 ease-out group 
                 hover:border-primary hover:shadow-[0_0_40px_rgba(225,6,0,0.3)] hover:scale-105 hover:-translate-y-2 z-0 hover:z-10
                 ${selectedPlan === plan.id ? 'ring-2 ring-primary' : ''}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               
-              {/* BADGE "SELECCIONAR" (Oculto por defecto, aparece en hover) */}
+              {/* BADGE "SELECCIONAR" */}
               <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-6 py-1 rounded-b-lg uppercase tracking-wider shadow-lg transform -translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                 SELECCIONAR
               </div>
 
               <div className="p-6 sm:p-8 flex-1 flex flex-col space-y-6">
                 
-                {/* Header de la tarjeta */}
+                {/* Header */}
                 <div className="space-y-4">
-                  {/* El icono cambia a rojo en hover */}
                   <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 bg-white/10 border-2 border-transparent transition-all duration-300 group-hover:bg-primary/20 group-hover:border-primary">
                     <Icon name={plan.icon as any} size={28} className="text-white transition-colors duration-300 group-hover:text-primary" variant="solid" />
                   </div>
@@ -117,7 +112,7 @@ const PlansSection = () => {
                   </p>
                 </div>
 
-                {/* Sección SE TRABAJA */}
+                {/* SE TRABAJA */}
                 <div className="space-y-3">
                   <p className="font-headline font-bold text-sm text-white uppercase">SE TRABAJA:</p>
                   <ul className="space-y-2">
@@ -130,7 +125,7 @@ const PlansSection = () => {
                   </ul>
                 </div>
 
-                {/* Sección PARA QUIÉN */}
+                {/* PARA QUIÉN */}
                 <div className="mt-auto pt-4">
                   <div className="bg-white/5 border border-white/10 rounded-lg p-4 group-hover:border-primary/30 transition-colors duration-300">
                     <p className="font-headline font-bold text-xs text-white uppercase mb-1">PARA QUIÉN:</p>
@@ -140,15 +135,46 @@ const PlansSection = () => {
                   </div>
                 </div>
 
-                {/* Frecuencia y Botón */}
-                <div className="pt-2 space-y-4">
-                  <div className="text-center bg-white/5 rounded-lg py-3 px-2 border border-white/5 group-hover:border-primary/30 transition-colors">
-                    <p className="font-headline font-bold text-[10px] sm:text-xs text-muted-foreground uppercase mb-1">
-                       ELIGE TU FRECUENCIA
-                    </p>
-                    <p className="font-headline font-black text-white text-lg tracking-tight">
-                       2, 3, 4 o 5 DÍAS
-                    </p>
+                {/* NUEVA SECCIÓN: INFORMACIÓN DE ENTRENAMIENTO */}
+                <div className="space-y-4 pt-2">
+                  <div className="bg-white/5 rounded-lg p-4 border border-white/5 space-y-3 group-hover:border-primary/30 transition-colors">
+                    
+                    {/* Frecuencia y Duración */}
+                    <div className="flex items-start space-x-3 border-b border-white/10 pb-3">
+                       <Icon name="ClockIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" variant="solid" />
+                       <div>
+                          <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-0.5">
+                             ELIGE TU ENTRENAMIENTO
+                          </p>
+                          <p className="font-headline font-bold text-white text-sm">
+                             2, 3, 4 o 5 veces por semana
+                          </p>
+                          <p className="font-body text-xs text-gray-400 mt-1">
+                             Duración: 1 hora
+                          </p>
+                       </div>
+                    </div>
+
+                    {/* Turnos */}
+                    <div>
+                       <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
+                          TURNOS DISPONIBLES
+                       </p>
+                       <div className="grid grid-cols-1 gap-1 text-xs text-gray-300 font-body">
+                          <div className="flex items-center space-x-2">
+                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                             <span>Mañana (8 a 12 hs)</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                             <span>Tarde (15 a 18 hs)</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                             <span>Noche (18 a 22 hs)</span>
+                          </div>
+                       </div>
+                    </div>
                   </div>
 
                   {isHydrated && (
@@ -157,7 +183,7 @@ const PlansSection = () => {
                       data-cta={`plan-${plan.id}`}
                       className="w-full py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta"
                     >
-                      Pre-inscribirme en este plan
+                      Pre-inscribirme
                     </button>
                   )}
                 </div>
