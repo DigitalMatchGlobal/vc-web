@@ -4,47 +4,44 @@ import { useState, useEffect } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 
-// Nueva interfaz: Ficha de Rendimiento (Un solo perfil + Stats)
+// Interfaz actualizada para Perfiles Genéricos
 interface AthleteProfile {
   id: string;
-  name: string;
-  age: number;
-  category: string;
+  sportTitle: string; // Antes "name" (ej: FÚTBOL)
+  focusLabel: string; // Antes "category" (ej: Alto Rendimiento)
   image: string;      
   imageAlt: string;
-  achievement: string;
+  keyResult: string;  // Antes "achievement"
   stats: {            
     label: string;
-    value: number;    // Del 1 al 100
-    displayValue: string; // Texto ej: "+30%"
+    value: number;
+    displayValue: string;
   }[];
 }
 
 const profiles: AthleteProfile[] = [
   {
-    id: 'athlete1',
-    name: 'Lucas Fernández',
-    age: 22,
-    category: 'Fútbol Profesional',
-    // AQUÍ USAMOS TU NUEVA IMAGEN
+    id: 'futbol',
+    sportTitle: 'FÚTBOL PROFESIONAL',
+    focusLabel: 'Rendimiento & Potencia',
+    // Usamos la imagen que creaste tipo ficha
     image: "/assets/images/ficha-futbol-lucas.png", 
-    imageAlt: 'Futbolista profesional en entrenamiento de alta intensidad',
-    achievement: 'Titularidad indiscutida',
+    imageAlt: 'Futbolista en entrenamiento de alta intensidad',
+    keyResult: 'Titularidad y Explosividad',
     stats: [
       { label: 'Potencia de Arranque', value: 90, displayValue: 'Elite' },
       { label: 'Prevención de Lesiones', value: 95, displayValue: 'Max' },
-      { label: 'Toma de Decisiones', value: 88, displayValue: '+40%' },
+      { label: 'Resistencia de Juego', value: 88, displayValue: '+40%' },
     ]
   },
   {
-    id: 'athlete2',
-    name: 'Martín Gómez',
-    age: 28,
-    category: 'Boxeo Amateur',
-    // Usamos la foto de boxeo que ya tenías o una de stock temporal
-    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1000&auto=format&fit=crop",
-    imageAlt: 'Boxeador concentrado',
-    achievement: 'Campeonato Provincial',
+    id: 'boxeo',
+    sportTitle: 'DEPORTES DE COMBATE',
+    focusLabel: 'Agilidad & Estrategia',
+    // Usamos la foto de boxeo que ya tienes
+    image: "/assets/images/alto-rendimiento.jpg",
+    imageAlt: 'Boxeador concentrado en entrenamiento técnico',
+    keyResult: 'Campeonato Provincial',
     stats: [
       { label: 'Fuerza Explosiva', value: 85, displayValue: '+25%' },
       { label: 'Gestión de Energía', value: 92, displayValue: 'Óptima' },
@@ -52,18 +49,17 @@ const profiles: AthleteProfile[] = [
     ]
   },
   {
-    id: 'athlete3',
-    name: 'Carolina Ruiz',
-    age: 35,
-    category: 'Tenis Competitivo',
-    // Foto temporal de tenis
-    image: "https://images.unsplash.com/photo-1595435934249-fd96316c5658?q=80&w=1000&auto=format&fit=crop",
-    imageAlt: 'Jugadora de tenis en saque',
-    achievement: 'Vuelta a competición',
+    id: 'salud',
+    sportTitle: 'FITNESS & SALUD',
+    focusLabel: 'Longevidad Activa',
+    // Usamos la foto del adulto mayor que ya tienes
+    image: "/assets/images/salud-adultos.jpg",
+    imageAlt: 'Entrenamiento de fuerza enfocado en salud y longevidad',
+    keyResult: 'Movilidad sin Dolor',
     stats: [
-      { label: 'Velocidad de Reacción', value: 88, displayValue: '+30%' },
-      { label: 'Recuperación', value: 90, displayValue: 'Rápida' },
-      { label: 'Movilidad', value: 85, displayValue: '+20%' },
+      { label: 'Fuerza Funcional', value: 88, displayValue: '+50%' },
+      { label: 'Salud Articular', value: 95, displayValue: 'Sana' },
+      { label: 'Vitalidad Diaria', value: 90, displayValue: 'Alta' },
     ]
   }
 ];
@@ -105,7 +101,7 @@ const PhilosophySection = () => {
 
             <div className="bg-primary/10 border-l-4 border-primary rounded-lg p-6">
               <blockquote className="font-body text-xl text-white italic leading-relaxed">
-                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos"
+                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos."
               </blockquote>
             </div>
 
@@ -133,26 +129,29 @@ const PhilosophySection = () => {
                   </p>
                 </div>
               </div>
-              
-              {/* Sección "Educación Continua" oculta temporalmente */}
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: FICHA DE RENDIMIENTO (Card Style) */}
+          {/* COLUMNA DERECHA: FICHA TÉCNICA (Generic Profiles) */}
           <div className="relative">
             {isHydrated && (
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group">
                 
+                {/* Fondo decorativo */}
+                <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+
                 {/* Header de la tarjeta */}
                 <div className="flex items-center justify-between mb-6 relative z-10">
                    <div>
-                      <h3 className="font-cta font-bold text-2xl text-white">{currentProfile.name}</h3>
+                      {/* TÍTULO DEPORTE (Antes Nombre) */}
+                      <h3 className="font-headline font-black text-2xl text-white uppercase">{currentProfile.sportTitle}</h3>
+                      {/* SUBTÍTULO ENFOQUE (Antes Categoría) */}
                       <p className="font-body text-sm text-primary font-bold uppercase tracking-wider">
-                        {currentProfile.category}
+                        {currentProfile.focusLabel}
                       </p>
                     </div>
                     
-                    {/* Controles de navegación */}
+                    {/* Controles */}
                     <div className="flex space-x-2">
                       <button
                         onClick={handlePrevious}
@@ -180,18 +179,18 @@ const PhilosophySection = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                     />
                     
-                    {/* Badge de Logro */}
+                    {/* Badge de Resultado Clave */}
                     <div className="absolute bottom-4 left-4 z-20">
                        <span className="font-body text-[10px] text-primary uppercase font-bold tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-md border border-primary/30">
-                         RESULTADO CLAVE
+                         OBJETIVO LOGRADO
                        </span>
                        <p className="font-headline font-black text-xl text-white italic mt-1 shadow-black drop-shadow-md">
-                         {currentProfile.achievement}
+                         {currentProfile.keyResult}
                        </p>
                     </div>
                 </div>
 
-                {/* Estadísticas (Barras de Progreso) */}
+                {/* Estadísticas */}
                 <div className="space-y-5 relative z-10">
                   {currentProfile.stats.map((stat, idx) => (
                     <div key={idx} className="space-y-1.5">
@@ -209,7 +208,7 @@ const PhilosophySection = () => {
                   ))}
                 </div>
 
-                {/* Indicadores de slide */}
+                {/* Indicadores */}
                 <div className="flex justify-center space-x-2 pt-8">
                   {profiles.map((_, index) => (
                     <button
