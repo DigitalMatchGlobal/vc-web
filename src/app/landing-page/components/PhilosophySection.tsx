@@ -24,7 +24,7 @@ const profiles: AthleteProfile[] = [
     id: 'futbol',
     sportTitle: 'FÚTBOL COMPETITIVO',
     focusLabel: 'Potencia & Velocidad',
-    image: "/assets/images/ficha-futbol-lucas.jpg", 
+    image: "/assets/images/ficha-futbol.jpg", 
     imageAlt: 'Futbolista realizando un remate en entrenamiento de campo',
     keyResult: 'Explosividad en Juego',
     stats: [
@@ -50,7 +50,7 @@ const profiles: AthleteProfile[] = [
     id: 'salud',
     sportTitle: 'FITNESS & LONGEVIDAD',
     focusLabel: 'Salud & Funcionalidad',
-    image: "/assets/images/salud-adultos.jpg",
+    image: "/assets/images/salud-adultos-mayor.jpg",
     imageAlt: 'Adulto mayor realizando ejercicio de fuerza controlado con kettlebell',
     keyResult: 'Movilidad y Fuerza Diaria',
     stats: [
