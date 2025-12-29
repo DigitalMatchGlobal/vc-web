@@ -50,7 +50,7 @@ const profiles: AthleteProfile[] = [
     id: 'salud',
     sportTitle: 'FITNESS & LONGEVIDAD',
     focusLabel: 'Salud & Funcionalidad',
-    image: "/assets/images/salud-adultos-mayor.jpg",
+    image: "/assets/images/salud-adultos-mayores.jpg",
     imageAlt: 'Adulto mayor realizando ejercicio de fuerza controlado con kettlebell',
     keyResult: 'Movilidad y Fuerza Diaria',
     stats: [
