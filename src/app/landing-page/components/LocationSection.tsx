@@ -25,17 +25,16 @@ const LocationSection = () => {
     setIsHydrated(true);
   }, []);
 
-  // ✅ Coordenadas exactas según el link proporcionado
-  // https://www.google.com/maps/place/24%C2%B046'48.7%22S+65%C2%B025'17.9%22W/@-24.780187,-65.42163,17z
-const latitude = -24.7802736;
-const longitude = -65.4217171;
+  // Coordenadas del Club Central Norte
+  const latitude = -24.7802736;
+  const longitude = -65.4217171;
 
-
-  // ✅ URLs de mapas (embed + abrir en Maps)
-  const mapsEmbedUrl = `https://www.google.com/maps?output=embed&q=${latitude},${longitude}&z=17`;
-const mapsOpenUrl =
-  'https://www.google.com/maps/place/Av.+Entre+R%C3%ADos+1450,+A4400BZP+Salta,+Argentina/@-24.7800137,-65.4222145,20z/data=!4m6!3m5!1s0x941bc3c9fc63c7db:0xbf78436d4614f6f2!8m2!3d-24.7802736!4d-65.4217171!16s%2Fg%2F11fm6z6bbv?entry=ttu';
-
+  // ✅ CORRECCIÓN: URLs válidas para Google Maps
+  // 1. Para mostrar el mapa en la web (iframe)
+  const mapsEmbedUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&hl=es&z=17&output=embed`;
+  
+  // 2. Para el botón "Cómo llegar" (abre la app/web de Maps)
+  const mapsOpenUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
 
   return (
     <section id="ubicacion" className="relative py-24 bg-card">
@@ -70,7 +69,7 @@ const mapsOpenUrl =
                 </div>
               </div>
 
-              {/* Contacto (sin datos inventados) */}
+              {/* Contacto */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Icon name="PhoneIcon" size={24} className="text-primary" variant="solid" />
@@ -126,34 +125,33 @@ const mapsOpenUrl =
               </div>
             </div>
 
-            {/* CTA WhatsApp (solo si está hidratado, mantiene tu lógica actual) */}
-                {isHydrated && (
-                  <a
-                    href={PRE_REGISTER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cta="location-preregister"
-                    className="w-full flex items-center justify-center space-x-3 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-300 shadow-cta focus:outline-none focus:ring-4 focus:ring-primary/40 hover:scale-[1.02]"
-                  >
-                    <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
-                    <span>Pre-Inscripción Gratuita</span>
-                  </a>
-                )}
+            {/* CTA Pre-Inscripción */}
+            {isHydrated && (
+              <a
+                href={PRE_REGISTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta="location-preregister"
+                className="w-full flex items-center justify-center space-x-3 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-300 shadow-cta focus:outline-none focus:ring-4 focus:ring-primary/40 hover:scale-[1.02]"
+              >
+                <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
+                <span>Pre-Inscripción Gratuita</span>
+              </a>
+            )}
           </div>
 
           {/* Mapa */}
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden">
-            <div className="aspect-[4/3] w-full h-full">
-              <iframe
-                width="100%"
-                height="100%"
-                loading="lazy"
-                title="Ubicación Victor Cuellar"
-                referrerPolicy="no-referrer-when-downgrade"
-                src={mapsEmbedUrl}
-                className="border-0"
-              />
-            </div>
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden h-full min-h-[400px]">
+            <iframe
+              width="100%"
+              height="100%"
+              loading="lazy"
+              title="Ubicación Victor Cuellar - Club Central Norte"
+              referrerPolicy="no-referrer-when-downgrade"
+              src={mapsEmbedUrl}
+              className="border-0 w-full h-full"
+              allowFullScreen
+            />
           </div>
         </div>
       </div>
