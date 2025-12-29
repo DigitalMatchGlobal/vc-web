@@ -7,11 +7,11 @@ import Icon from '@/components/ui/AppIcon';
 // Interfaz actualizada para Perfiles Genéricos
 interface AthleteProfile {
   id: string;
-  sportTitle: string; // Antes "name" (ej: FÚTBOL)
-  focusLabel: string; // Antes "category" (ej: Alto Rendimiento)
+  sportTitle: string; // Ej: FÚTBOL PROFESIONAL
+  focusLabel: string; // Ej: Rendimiento & Potencia
   image: string;      
   imageAlt: string;
-  keyResult: string;  // Antes "achievement"
+  keyResult: string;  // Ej: Titularidad
   stats: {            
     label: string;
     value: number;
@@ -22,44 +22,45 @@ interface AthleteProfile {
 const profiles: AthleteProfile[] = [
   {
     id: 'futbol',
-    sportTitle: 'FÚTBOL PROFESIONAL',
-    focusLabel: 'Rendimiento & Potencia',
-    // Usamos la imagen que creaste tipo ficha
-    image: "/assets/images/ficha-futbol-lucas.png", 
-    imageAlt: 'Futbolista en entrenamiento de alta intensidad',
-    keyResult: 'Titularidad y Explosividad',
+    sportTitle: 'FÚTBOL COMPETITIVO',
+    focusLabel: 'Potencia & Velocidad',
+    // FOTO REAL DEL FUTBOLISTA
+    image: "/assets/images/ficha-futbol.jpg", 
+    imageAlt: 'Futbolista realizando un remate en entrenamiento de campo',
+    keyResult: 'Explosividad en Juego',
     stats: [
-      { label: 'Potencia de Arranque', value: 90, displayValue: 'Elite' },
+      { label: 'Potencia de Arranque', value: 92, displayValue: 'Elite' },
       { label: 'Prevención de Lesiones', value: 95, displayValue: 'Max' },
-      { label: 'Resistencia de Juego', value: 88, displayValue: '+40%' },
+      { label: 'Resistencia Intermitente', value: 88, displayValue: '+40%' },
     ]
   },
   {
-    id: 'boxeo',
-    sportTitle: 'DEPORTES DE COMBATE',
-    focusLabel: 'Agilidad & Estrategia',
-    // Usamos la foto de boxeo que ya tienes
-    image: "/assets/images/alto-rendimiento.jpg",
-    imageAlt: 'Boxeador concentrado en entrenamiento técnico',
-    keyResult: 'Campeonato Provincial',
+    id: 'running',
+    sportTitle: 'RUNNING & MARATÓN', // CAMBIO: Nuevo perfil para todo público
+    focusLabel: 'Resistencia & Técnica',
+    // FOTO REAL DEL CORREDOR
+    image: "/assets/images/ficha-runner-maraton.jpg",
+    imageAlt: 'Corredor preparándose para entrenar, enfocándose en la técnica y prevención',
+    keyResult: '42K sin Lesiones', // Objetivo claro para amateur
     stats: [
-      { label: 'Fuerza Explosiva', value: 85, displayValue: '+25%' },
-      { label: 'Gestión de Energía', value: 92, displayValue: 'Óptima' },
-      { label: 'Enfoque Mental', value: 95, displayValue: '100%' },
+      // Estadísticas relevantes para un corredor
+      { label: 'Técnica de Carrera', value: 90, displayValue: 'Eficiente' },
+      { label: 'Capacidad Aeróbica', value: 95, displayValue: '+50%' },
+      { label: 'Fortalecimiento Preventivo', value: 98, displayValue: '100%' },
     ]
   },
   {
     id: 'salud',
-    sportTitle: 'FITNESS & SALUD',
-    focusLabel: 'Longevidad Activa',
-    // Usamos la foto del adulto mayor que ya tienes
-    image: "/assets/images/salud-adultos.jpg",
-    imageAlt: 'Entrenamiento de fuerza enfocado en salud y longevidad',
-    keyResult: 'Movilidad sin Dolor',
+    sportTitle: 'FITNESS & LONGEVIDAD',
+    focusLabel: 'Salud & Funcionalidad',
+    // FOTO REAL DEL ADULTO MAYOR
+    image: "/assets/images/salud-adultos-mayores.jpg",
+    imageAlt: 'Adulto mayor realizando ejercicio de fuerza controlado con kettlebell',
+    keyResult: 'Movilidad y Fuerza Diaria',
     stats: [
       { label: 'Fuerza Funcional', value: 88, displayValue: '+50%' },
       { label: 'Salud Articular', value: 95, displayValue: 'Sana' },
-      { label: 'Vitalidad Diaria', value: 90, displayValue: 'Alta' },
+      { label: 'Vitalidad y Energía', value: 90, displayValue: 'Alta' },
     ]
   }
 ];
@@ -101,7 +102,7 @@ const PhilosophySection = () => {
 
             <div className="bg-primary/10 border-l-4 border-primary rounded-lg p-6">
               <blockquote className="font-body text-xl text-white italic leading-relaxed">
-                "El objetivo es formar bases sólidas. Entrenar como profesional, incluso cuando todavía no lo sos."
+                "El objetivo es formar bases sólidas. Entrenar con mentalidad profesional, sin importar tu nivel actual."
               </blockquote>
             </div>
 
@@ -143,10 +144,10 @@ const PhilosophySection = () => {
                 {/* Header de la tarjeta */}
                 <div className="flex items-center justify-between mb-6 relative z-10">
                    <div>
-                      {/* TÍTULO DEPORTE (Antes Nombre) */}
-                      <h3 className="font-headline font-black text-2xl text-white uppercase">{currentProfile.sportTitle}</h3>
-                      {/* SUBTÍTULO ENFOQUE (Antes Categoría) */}
-                      <p className="font-body text-sm text-primary font-bold uppercase tracking-wider">
+                      {/* TÍTULO DEPORTE */}
+                      <h3 className="font-headline font-black text-2xl text-white uppercase leading-tight">{currentProfile.sportTitle}</h3>
+                      {/* SUBTÍTULO ENFOQUE */}
+                      <p className="font-body text-sm text-primary font-bold uppercase tracking-wider mt-1">
                         {currentProfile.focusLabel}
                       </p>
                     </div>
@@ -176,13 +177,15 @@ const PhilosophySection = () => {
                    <AppImage
                       src={currentProfile.image}
                       alt={currentProfile.imageAlt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      // Ajuste para que la imagen se vea bien en el contenedor
+                      style={{ objectPosition: 'center top' }} 
                     />
                     
                     {/* Badge de Resultado Clave */}
                     <div className="absolute bottom-4 left-4 z-20">
                        <span className="font-body text-[10px] text-primary uppercase font-bold tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-md border border-primary/30">
-                         OBJETIVO LOGRADO
+                         OBJETIVO
                        </span>
                        <p className="font-headline font-black text-xl text-white italic mt-1 shadow-black drop-shadow-md">
                          {currentProfile.keyResult}
