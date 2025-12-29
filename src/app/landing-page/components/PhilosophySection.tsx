@@ -64,10 +64,20 @@ const profiles: AthleteProfile[] = [
 const PhilosophySection = () => {
   const [isHydrated, setIsHydrated] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [animateBars, setAnimateBars] = useState(false); // Estado para controlar la animación
 
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+
+  // Efecto: Cada vez que cambia el perfil, reinicia la animación de las barras
+  useEffect(() => {
+    setAnimateBars(false); // Resetea a 0
+    const timer = setTimeout(() => {
+      setAnimateBars(true); // Activa la animación después de un instante
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => prev === 0 ? profiles.length - 1 : prev - 1);
@@ -134,7 +144,7 @@ const PhilosophySection = () => {
             {isHydrated && (
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group">
                 
-                {/* Fondo decorativo (z-0 para que no tape) */}
+                {/* Fondo decorativo (z-0) */}
                 <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl z-0"></div>
 
                 {/* Header de la tarjeta */}
@@ -146,7 +156,7 @@ const PhilosophySection = () => {
                       </p>
                     </div>
                     
-                    {/* Controles (z-30 para asegurar clic) */}
+                    {/* Controles (z-30) */}
                     <div className="flex space-x-2">
                       <button
                         type="button"
@@ -167,7 +177,7 @@ const PhilosophySection = () => {
                     </div>
                 </div>
 
-                {/* Imagen Principal (Usamos key para forzar recarga al cambiar) */}
+                {/* Imagen Principal */}
                 <div className="relative aspect-video rounded-lg overflow-hidden mb-6 border border-white/10 shadow-inner bg-black/20 z-10">
                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10"></div>
                    <AppImage
@@ -195,13 +205,16 @@ const PhilosophySection = () => {
                     <div key={idx} className="space-y-1.5">
                       <div className="flex justify-between items-end">
                         <span className="font-body text-xs text-gray-300 uppercase tracking-wide">{stat.label}</span>
-                        <span className="font-cta font-bold text-sm text-primary">{stat.displayValue}</span>
+                        {/* Valor numérico en color dorado para combinar */}
+                        <span className="font-cta font-bold text-sm text-yellow-500">{stat.displayValue}</span>
                       </div>
-                      {/* BARRA DE FONDO CON MÁS CONTRASTE (bg-white/20) */}
-                      <div className="h-2.5 w-full bg-white/20 rounded-full overflow-hidden border border-white/10">
+                      
+                      {/* RIEL DE FONDO OSCURO (Para contraste) */}
+                      <div className="h-2.5 w-full bg-black/60 rounded-full overflow-hidden border border-white/10 shadow-inner">
                         <div 
-                          className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(225,6,0,0.5)]"
-                          style={{ width: `${stat.value}%` }}
+                          className="h-full bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(234,179,8,0.5)]"
+                          // Aquí aplicamos la lógica: si animateBars es true, usa el valor, si no, empieza en 0
+                          style={{ width: `${animateBars ? stat.value : 0}%` }}
                         ></div>
                       </div>
                     </div>
