@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '../styles/index.css';
 
 export const viewport = {
@@ -62,7 +63,6 @@ const personSchema = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,8 +70,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {/* ✅ Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XGDWTS56N7"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XGDWTS56N7', { anonymize_ip: true });
+          `}
+        </Script>
+      </head>
+
       <body>
-        {/* Nivel 3 — Schema.org (JSON-LD) */}
+        {/* ✅ Nivel 3 — Schema.org (JSON-LD) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
