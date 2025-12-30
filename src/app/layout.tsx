@@ -84,6 +84,9 @@ export default function RootLayout({
             gtag('config', 'G-XGDWTS56N7', { anonymize_ip: true });
           `}
         </Script>
+
+        {/* Google Search Console verification */}
+        <meta name="google-site-verification" content="7WY-ssdKnuOmHX1G8Hm6sqN6eq9yCJvXMHrHdyXDKD4" />
       </head>
 
       <body>
