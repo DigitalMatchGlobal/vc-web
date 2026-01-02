@@ -33,7 +33,8 @@ const FloatingWhatsAppButton = ({ activeSection = 'inicio' }: FloatingWhatsAppBu
   }, []);
 
   const handleClick = () => {
-    const phoneNumber = '5493876000000';
+    // ✅ NÚMERO ACTUALIZADO
+    const phoneNumber = '5493876856439';
     const message = encodeURIComponent(sectionMessages[activeSection] || sectionMessages.inicio);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
