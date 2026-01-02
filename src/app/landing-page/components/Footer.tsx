@@ -61,7 +61,7 @@
                 </li>
                 <li className="flex items-center space-x-3 text-muted-foreground">
                     <Icon name="DevicePhoneMobileIcon" size={20} className="text-primary flex-shrink-0" variant="solid" />
-                    <span className="font-body text-sm">+54 9 387 600-0000</span>
+                    <span className="font-body text-sm">+54 9 3876856439</span>
                 </li>
                 </ul>
             </div>

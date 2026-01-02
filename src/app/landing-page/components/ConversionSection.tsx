@@ -33,7 +33,8 @@ const ConversionSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phoneNumber = '5493876000000';
+    // CORREGIDO: Número nuevo sin el signo "+"
+    const phoneNumber = '5493876856439'; 
     const message = encodeURIComponent(
       `Hola, soy ${formData.name}. Estoy interesado en ${formData.interest}. ${formData.message}`
     );
@@ -41,7 +42,8 @@ const ConversionSection = () => {
   };
 
   const handleWhatsAppDirect = () => {
-    const phoneNumber = '5493876000000';
+    // CORREGIDO: Número nuevo sin el signo "+"
+    const phoneNumber = '5493876856439';
     const message = encodeURIComponent('Hola, quiero agendar mi evaluación gratuita esta semana.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -105,7 +107,7 @@ const ConversionSection = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white font-body focus:outline-none focus:border-primary transition-colors duration-250"
-                      placeholder="+54 9 387 600-0000"
+                      placeholder="+54 9 387..."
                     />
                   </div>
 
