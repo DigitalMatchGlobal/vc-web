@@ -17,7 +17,7 @@ interface StickyNavigationProps {
 }
 
 /**
- * ✅ ORDEN DEL MENÚ (Equipo oculto temporalmente)
+ * ✅ ORDEN DEL MENÚ
  * 1. Inicio
  * 2. Sobre mí
  * 3. Servicios
@@ -39,7 +39,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
-    const NAV_HEIGHT = 80;
+    const NAV_HEIGHT = 80; 
     const ACTIVE_MARGIN = 12;
 
     const handleScroll = () => {
@@ -97,7 +97,7 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   const handleWhatsAppClick = () => {
     if (onWhatsAppClick) onWhatsAppClick();
 
-    // ✅ NÚMERO ACTUALIZADO (sin el +)
+    // ✅ CORREGIDO: Número nuevo
     const phoneNumber = '5493876856439';
     const message = encodeURIComponent(
       'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
@@ -127,7 +127,6 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             className="flex items-center group"
             aria-label="Ir a inicio"
           >
-            {/* Contenedor con tamaño estable para que no mueva el layout */}
             <div className="relative h-10 w-[140px] sm:w-[160px]">
               <Image
                 src="/assets/images/victor-cuellar-logo.png"
