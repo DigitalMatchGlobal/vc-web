@@ -52,7 +52,8 @@ const LandingPageInteractive = () => {
   }, [isHydrated]);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5493876000000';
+    // ✅ NÚMERO ACTUALIZADO (sin el +)
+    const phoneNumber = '5493876856439';
     const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -71,6 +72,7 @@ const LandingPageInteractive = () => {
   return (
     <ConversionTrackingWrapper trackPageView pageTitle="Victor Cuellar">
       <div className="min-h-screen bg-background">
+        {/* Pasamos la función actualizada al menú */}
         <StickyNavigation onWhatsAppClick={handleWhatsAppClick} />
         <SectionAnchorSystem sections={sections} />
         

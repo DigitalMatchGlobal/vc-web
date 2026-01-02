@@ -29,12 +29,17 @@ const LocationSection = () => {
   const latitude = -24.7802736;
   const longitude = -65.4217171;
 
-  // ✅ CORRECCIÓN: URLs válidas para Google Maps
-  // 1. Para mostrar el mapa en la web (iframe)
+  // URLs corregidas para Google Maps
   const mapsEmbedUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&hl=es&z=17&output=embed`;
-  
-  // 2. Para el botón "Cómo llegar" (abre la app/web de Maps)
   const mapsOpenUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '5493876856439';
+    const message = encodeURIComponent(
+      'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
 
   return (
     <section id="ubicacion" className="relative py-24 bg-card">
@@ -69,18 +74,23 @@ const LocationSection = () => {
                 </div>
               </div>
 
-              {/* Contacto */}
+              {/* Contacto con WhatsApp Link */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Icon name="PhoneIcon" size={24} className="text-primary" variant="solid" />
                 </div>
                 <div>
                   <h3 className="font-cta font-bold text-xl text-white mb-2">Contacto</h3>
-                  <p className="font-body text-muted-foreground">
-                    WhatsApp: a confirmar
-                    <br />
-                    Email: info@victorcuellar.fit
-                  </p>
+                  <div className="font-body text-muted-foreground space-y-1">
+                    <button 
+                      onClick={handleWhatsAppClick}
+                      className="text-left hover:text-primary transition-colors flex items-center gap-2 group"
+                    >
+                      <span>WhatsApp: +54 9 3876 85-6439</span>
+                      <Icon name="ChatBubbleLeftRightIcon" size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                    <p>Email: info@victorcuellar.fit</p>
+                  </div>
                 </div>
               </div>
 
