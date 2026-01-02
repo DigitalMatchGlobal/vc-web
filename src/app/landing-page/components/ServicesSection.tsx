@@ -10,7 +10,7 @@ interface Service {
   description: string;
   benefits: string[];
   testimonial: {
-    author: string; // Antes name
+    author: string;
     role: string;
     quote: string;
   };
@@ -79,6 +79,27 @@ const services: Service[] = [
     image: "/assets/images/alto-rendimiento.jpg",
     imageAlt: 'Boxeador profesional golpeando bolsa de entrenamiento con alta intensidad',
     icon: 'TrophyIcon'
+  },
+  // ✅ NUEVO SERVICIO: CORPORATIVO
+  {
+    id: 'corporativo',
+    title: 'Bienestar Corporativo & In-Company',
+    categoryLabel: 'Salud Laboral & Pausas Activas',
+    description: 'Llevamos el sistema de entrenamiento a tu empresa. Programas de prevención de lesiones y pausas activas para equipos de alto rendimiento, desde oficinas hasta yacimientos mineros.',
+    benefits: [
+      'Prevención de lesiones laborales y ergonomía',
+      'Pausas activas en planta u oficina',
+      'Reducción de estrés y ausentismo',
+      'Actividades de Team Building'
+    ],
+    testimonial: {
+      author: 'Gerencia de RRHH',
+      role: 'Sector Minería e Industria',
+      quote: 'Implementar las pausas activas mejoró notablemente el clima laboral y la energía del equipo en planta.'
+    },
+    image: "/assets/images/bienestar-corporativo.jpg", // Asegúrate de guardar la foto con este nombre
+    imageAlt: 'Equipo de trabajadores realizando ejercicios de estiramiento y pausa activa con Victor Cuellar',
+    icon: 'BriefcaseIcon' // Usamos un maletín o edificio para representar empresas
   }
 ];
 
@@ -113,6 +134,7 @@ const ServicesSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute top-4 left-4">
                     <div className="w-16 h-16 bg-primary/90 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                      {/* Si BriefcaseIcon no existe en tu set, cambiará a un default, pero suele estar */}
                       <Icon name={service.icon as any} size={32} className="text-white" variant="solid" />
                     </div>
                   </div>
@@ -141,10 +163,9 @@ const ServicesSection = () => {
                   ))}
                 </div>
 
-                {/* TARJETA DE RESEÑA (Sin foto personal) */}
+                {/* TARJETA DE RESEÑA */}
                 <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:border-primary/30 transition-colors">
                   <div className="flex items-start space-x-4">
-                    {/* Icono de Estrella en lugar de foto */}
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
                       <Icon name="StarIcon" size={24} className="text-primary" variant="solid" />
                     </div>
