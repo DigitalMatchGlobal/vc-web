@@ -68,10 +68,21 @@
                 </ul>
             </div>
 
-            {/* Columna 3: Legal & Staff */}
+            {/* Columna 3: Compañía / Institucional */}
             <div className="col-span-1 space-y-4">
-                <h3 className="font-cta font-bold text-white text-lg">Legal</h3>
+                {/* Título cambiado a "Compañía" para abarcar todo */}
+                <h3 className="font-cta font-bold text-white text-lg">Compañía</h3>
                 <ul className="space-y-2">
+                {/* ✅ ENLACE DE RECLUTAMIENTO PRIMERO */}
+                <li>
+                    <a 
+                    href="mailto:info@victorcuellar.fit?subject=CV%20-%20Solicitud%20de%20Staff" 
+                    className="font-body text-sm text-primary hover:text-white transition-colors flex items-center gap-1 group font-bold"
+                    >
+                    Sumate al Staff
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </a>
+                </li>
                 <li>
                     <Link href="/privacy-policy" className="font-body text-sm text-muted-foreground hover:text-white transition-colors">
                     Privacy Policy
@@ -82,15 +93,11 @@
                     Terms of Service
                     </Link>
                 </li>
-                {/* ✅ ENLACE DE RECLUTAMIENTO DISCRETO */}
+                {/* ✅ DATA DELETION RESTAURADO */}
                 <li>
-                    <a 
-                    href="mailto:info@victorcuellar.fit?subject=CV%20-%20Solicitud%20de%20Staff" 
-                    className="font-body text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group"
-                    >
-                    Sumate al Staff
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                    </a>
+                    <Link href="/data-deletion" className="font-body text-sm text-muted-foreground hover:text-white transition-colors">
+                    Data Deletion
+                    </Link>
                 </li>
                 </ul>
             </div>
