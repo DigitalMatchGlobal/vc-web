@@ -97,7 +97,8 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
   const handleWhatsAppClick = () => {
     if (onWhatsAppClick) onWhatsAppClick();
 
-    const phoneNumber = '5493876000000';
+    // ✅ NÚMERO ACTUALIZADO (sin el +)
+    const phoneNumber = '5493876856439';
     const message = encodeURIComponent(
       'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
     );
