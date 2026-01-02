@@ -7,16 +7,6 @@ interface FloatingWhatsAppButtonProps {
   activeSection?: string;
 }
 
-// CAMBIO: contacto -> ubicacion
-const sectionMessages: Record<string, string> = {
-  inicio: 'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.',
-  'sobre-mi': 'Hola, quisiera conocer más sobre la trayectoria y experiencia de Victor.',
-  servicios: 'Hola, me gustaría obtener más información sobre los servicios de entrenamiento personalizado.',
-  equipo: 'Hola, quisiera conocer más sobre el equipo multidisciplinario y su metodología.',
-  planes: 'Hola, estoy interesado en conocer los planes de entrenamiento y sus precios.',
-  ubicacion: 'Hola, me gustaría saber más sobre la ubicación y horarios de entrenamiento.',
-};
-
 const FloatingWhatsAppButton = ({ activeSection = 'inicio' }: FloatingWhatsAppButtonProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -35,14 +25,19 @@ const FloatingWhatsAppButton = ({ activeSection = 'inicio' }: FloatingWhatsAppBu
   const handleClick = () => {
     // ✅ NÚMERO ACTUALIZADO
     const phoneNumber = '5493876856439';
-    const message = encodeURIComponent(sectionMessages[activeSection] || sectionMessages.inicio);
+    
+    // ✅ MENSAJE ÚNICO ESTANDARIZADO
+    const message = encodeURIComponent(
+      'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
+    );
+    
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'whatsapp_click', {
         location: 'floating_button',
         section: activeSection,
-        message_type: activeSection,
+        message_type: 'standard_inquiry', // Etiqueta para seguimiento
       });
     }
   };
