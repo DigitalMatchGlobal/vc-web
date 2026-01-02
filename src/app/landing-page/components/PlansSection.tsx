@@ -154,8 +154,8 @@ const PlansSection = () => {
                     
                     {/* Frecuencia y Duración */}
                     <div className="flex items-start space-x-3 border-b border-white/10 pb-3">
-                       <Icon name="ClockIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" variant="solid" />
-                       <div>
+                        <Icon name="ClockIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" variant="solid" />
+                        <div>
                           <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-0.5">
                              ELIGE TU ENTRENAMIENTO
                           </p>
@@ -165,15 +165,15 @@ const PlansSection = () => {
                           <p className="font-body text-xs text-gray-400 mt-1">
                              Duración: 60 minutos
                           </p>
-                       </div>
+                        </div>
                     </div>
 
                     {/* FRANJAS HORARIAS */}
                     <div>
-                       <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
-                          FRANJAS HORARIAS
-                       </p>
-                       <div className="grid grid-cols-1 gap-1 text-xs text-gray-300 font-body">
+                        <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
+                           FRANJAS HORARIAS
+                        </p>
+                        <div className="grid grid-cols-1 gap-1 text-xs text-gray-300 font-body">
                           <div className="flex items-center space-x-2">
                              <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                              <span>Mañana (8 a 12 hs)</span>
@@ -186,7 +186,7 @@ const PlansSection = () => {
                              <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                              <span>Noche (18 a 22 hs)</span>
                           </div>
-                       </div>
+                        </div>
                     </div>
                   </div>
 
@@ -213,13 +213,19 @@ const PlansSection = () => {
           <p className="font-body text-muted-foreground mb-4">
             ¿Buscas algo más personalizado o tienes dudas?
           </p>
-          <button
+          
+          {/* BOTÓN WHATSAPP YA CONFIGURADO */}
+          <a
+            href="https://wa.me/5493876856439" 
+            target="_blank" 
+            rel="noopener noreferrer"
             data-cta="plans-contact"
             className="inline-flex items-center space-x-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-250 shadow-cta hover:shadow-none uppercase"
           >
             <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
             <span>Hablar con Victor</span>
-          </button>
+          </a>
+
         </div>
 
         {/* --- NUEVA BARRA DINÁMICA (TICKER) --- */}
