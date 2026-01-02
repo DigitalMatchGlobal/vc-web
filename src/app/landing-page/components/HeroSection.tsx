@@ -60,6 +60,25 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, [isHydrated]);
 
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '5493876856439';
+    const message = encodeURIComponent(
+      'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
+
+  const handlePreRegisterClick = () => {
+    const contactSection = document.getElementById('ubicacion');
+    if (contactSection) {
+      const offsetPosition = contactSection?.offsetTop - 80;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       
@@ -72,17 +91,18 @@ const HeroSection = () => {
         .animate-marquee {
           display: flex;
           width: max-content;
-          animation: marquee 40s linear infinite; /* Animación más lenta para mejor lectura */
+          /* Aumentamos el tiempo porque ahora la tira es mucho más larga */
+          animation: marquee 100s linear infinite; 
         }
         @media (max-width: 640px) {
           .animate-marquee {
-            animation: marquee 20s linear infinite; /* Ajuste para móvil */
+            animation: marquee 40s linear infinite; /* Ajuste para móvil */
           }
         }
       `}</style>
 
       <div className="absolute inset-0 z-0">
-        {/* IMAGEN DE FONDO ACTUALIZADA */}
+        {/* IMAGEN DE FONDO */}
         <AppImage
           src="/assets/images/hero-background.jpg"
           alt="Atleta realizando entrenamiento de fuerza y potencia con barra"
@@ -112,10 +132,9 @@ const HeroSection = () => {
 
           {/* CTA ÚNICO - centrado */}
           <div className="flex flex-col items-center justify-center pt-6 space-y-8 w-full">
-            <a
-              href={PRE_REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* CORREGIDO: Usamos el manejador de scroll en lugar de link directo */}
+            <button
+              onClick={handlePreRegisterClick}
               data-cta="hero-preregister"
               className={[
                 'inline-flex items-center justify-center',
@@ -132,13 +151,14 @@ const HeroSection = () => {
               ].join(' ')}
             >
               Pre-Inscripción Gratuita
-            </a>
+            </button>
 
-            {/* --- BARRA DINÁMICA (TICKER) --- */}
+            {/* --- BARRA DINÁMICA (TICKER) CORREGIDA --- */}
             {ctaEntered && (
-              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-gradient-to-r from-black/20 via-white/5 to-black/20 border-y border-white/5 backdrop-blur-sm">
+              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-black/40 border-y border-white/10 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
-                  {[...Array(4)].map((_, i) => (
+                  {/* Aumentamos a 10 repeticiones para asegurar que cubra pantallas ultra anchas sin cortes */}
+                  {[...Array(10)].map((_, i) => (
                     <div key={i} className="flex items-center opacity-90">
                       {/* Texto 1: Cupos */}
                       <span className="mx-3 sm:mx-6 font-headline font-bold text-[11px] sm:text-sm text-white uppercase tracking-widest italic">
