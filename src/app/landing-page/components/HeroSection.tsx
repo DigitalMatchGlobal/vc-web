@@ -11,9 +11,15 @@ interface StatCounter {
   suffix: string;
 }
 
-const PRE_REGISTER_URL = 'https://forms.gle/qtYAkNHNR8X5rrSx9';
+// ✅ ENLACE DEL FORMULARIO ACTUALIZADO
+const PRE_REGISTER_URL = 'https://forms.gle/C9mtn3mPsS368UMFA';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onWhatsAppClick?: () => void;
+  onPreRegisterClick?: () => void;
+}
+
+const HeroSection = ({ onWhatsAppClick, onPreRegisterClick }: HeroSectionProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
   const [ctaEntered, setCtaEntered] = useState(false);
 
@@ -59,25 +65,6 @@ const HeroSection = () => {
 
     return () => clearInterval(timer);
   }, [isHydrated]);
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = '5493876856439';
-    const message = encodeURIComponent(
-      'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
-  const handlePreRegisterClick = () => {
-    const contactSection = document.getElementById('ubicacion');
-    if (contactSection) {
-      const offsetPosition = contactSection?.offsetTop - 80;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -132,9 +119,11 @@ const HeroSection = () => {
 
           {/* CTA ÚNICO - centrado */}
           <div className="flex flex-col items-center justify-center pt-6 space-y-8 w-full">
-            {/* CORREGIDO: Usamos el manejador de scroll en lugar de link directo */}
-            <button
-              onClick={handlePreRegisterClick}
+            {/* ENLACE DIRECTO AL FORMULARIO */}
+            <a
+              href={PRE_REGISTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               data-cta="hero-preregister"
               className={[
                 'inline-flex items-center justify-center',
@@ -151,13 +140,12 @@ const HeroSection = () => {
               ].join(' ')}
             >
               Pre-Inscripción Gratuita
-            </button>
+            </a>
 
-            {/* --- BARRA DINÁMICA (TICKER) CORREGIDA --- */}
+            {/* --- BARRA DINÁMICA (TICKER) --- */}
             {ctaEntered && (
               <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-black/40 border-y border-white/10 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
-                  {/* Aumentamos a 10 repeticiones para asegurar que cubra pantallas ultra anchas sin cortes */}
                   {[...Array(10)].map((_, i) => (
                     <div key={i} className="flex items-center opacity-90">
                       {/* Texto 1: Cupos */}
