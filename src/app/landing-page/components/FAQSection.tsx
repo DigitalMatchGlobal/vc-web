@@ -44,7 +44,7 @@ const faqs: FAQ[] = [
     id: 'faq6',
     question: '¿Dónde entrenan, cuánto duran las clases y cómo me inscribo?',
     answer:
-      'Las sesiones duran 60 minutos. Entrenamos en canchas de fútbol 5 del Club Central Norte (Av. Entre Ríos y Alte. Brown, Salta). Para comenzar, escribime por WhatsApp, consultá disponibilidad y completá la pre-inscripción. Los cupos son limitados para garantizar calidad y seguimiento real.',
+      'Las sesiones duran 60 minutos. Entrenamos en canchas de fútbol 5 del Club Central Norte (Av. Entre Ríos 1450, Salta). Para comenzar, escribime por WhatsApp, consultá disponibilidad y completá la pre-inscripción. Los cupos son limitados para garantizar calidad y seguimiento real.',
   },
 ];
 

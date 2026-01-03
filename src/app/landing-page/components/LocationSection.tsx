@@ -65,7 +65,7 @@ const LocationSection = () => {
                 <div>
                   <h3 className="font-cta font-bold text-xl text-white mb-2">Dirección</h3>
                   <p className="font-body text-muted-foreground">
-                    Av. Entre Ríos y Alte. Brown
+                    Av. Entre Ríos 1450
                     <br />
                     Club Central Norte – canchas de fútbol 5
                     <br />
