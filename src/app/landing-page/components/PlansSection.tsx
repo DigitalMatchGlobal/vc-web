@@ -16,7 +16,7 @@ interface Plan {
 const plans: Plan[] = [
   {
     id: 'fuerza-base',
-    name: 'FUERZA Y BASE',
+    name: 'FUERZA BASE',
     subtitle: 'LA BASE DE TODO RENDIMIENTO',
     description: 'Construir un cuerpo más fuerte, estable y funcional.',
     features: [
