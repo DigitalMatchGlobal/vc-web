@@ -24,13 +24,13 @@ const plans: Plan[] = [
       'Control corporal',
       'Movimientos seguros',
     ],
-    targetAudience: 'Adultos y deportistas que quieren entrenar bien, sin improvisar.',
+    targetAudience: 'Niños, jóvenes, adultos y deportistas que quieren entrenar bien, sin improvisar.',
     icon: 'ShieldCheckIcon',
   },
   {
     id: 'combinado-hibrido',
     name: 'COMBINADO / HÍBRIDO',
-    subtitle: 'FUERZA + CAMPO + JUEGO',
+    subtitle: 'FUERZA + CAMPO DE JUEGO',
     description: 'Estímulos de fuerza combinados con dinámica real de campo (ej. fútbol 5).',
     features: [
       'Fuerza y Resistencia',

@@ -31,7 +31,7 @@ const proofCards: ProofCard[] = [
     icon: 'StarIcon',
     value: 'Resultados',
     label: 'Ascensos y Campeonatos',
-    description: 'Protagonista de procesos campeones y ascensos históricos, tanto a nivel internacional (Primera RFEF en España con SD Tarazona) como en el fútbol salteño, trabajando con Juventud Antoniana, Gimnasia y Tiro y Central Norte.'
+    description: 'Protagonista de procesos campeones y ascensos históricos, tanto a nivel internacional (Ascenso a 1era RFEF en España con SD Tarazona) como en el fútbol salteño, trabajando con Juventud Antoniana, Gimnasia y Tiro y Central Norte.'
   },
   {
     id: 'management',
@@ -164,7 +164,7 @@ const AuthoritySection = () => {
                     
                     
                     <li className="text-sm text-gray-400 font-body flex items-start">
-                      <span className="text-primary mr-2">🇪🇸 ⚽</span> SD Tarazona (España) - Ascenso RFEF
+                      <span className="text-primary mr-2">🇪🇸 ⚽</span> SD Tarazona (España) - Ascenso a 1era RFEF
                     </li>
                     
                     <li className="text-sm text-gray-400 font-body flex items-start">
