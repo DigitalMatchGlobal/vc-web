@@ -3,74 +3,103 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
+interface PlanDetail {
+  title: string;
+  items: string[];
+}
+
 interface Plan {
   id: string;
   name: string;
   subtitle: string;
-  description: string;
-  features: string[];
+  // Front Content
+  shortDescription: string;
+  mainFeatures: string[];
   targetAudience: string;
   icon: string;
+  // Back Content (Details)
+  details: PlanDetail[];
+  importantNote?: string;
 }
 
 const plans: Plan[] = [
   {
     id: 'fuerza-base',
     name: 'FUERZA BASE',
-    subtitle: 'LA BASE DE TODO RENDIMIENTO',
-    description: 'Construir un cuerpo más fuerte, estable y funcional.',
-    features: [
-      'Fuerza general',
-      'Control corporal',
-      'Movimientos seguros',
+    subtitle: 'GIMNASIO & FUNDAMENTOS',
+    shortDescription: 'Plan exclusivo de gimnasio enfocado en la salud musculoesquelética y la calidad de movimiento.',
+    mainFeatures: [
+      '100% Gimnasio (Sin campo)',
+      'Fuerza y Estabilidad',
+      'Supervisión Profesional',
     ],
-    targetAudience: 'Niños, jóvenes, adultos y deportistas que quieren entrenar bien, sin improvisar.',
+    targetAudience: 'Ideal para quienes entrenan exclusivamente en gimnasio y buscan corregir técnica y ganar fuerza real.',
     icon: 'ShieldCheckIcon',
+    // Detalles del dorso basados en el WhatsApp
+    details: [
+      {
+        title: 'Qué trabajamos',
+        items: ['Patrones fundamentales: Sentadilla, bisagra, empuje, tracción.', 'Mejora de fuerza y calidad de movimiento.', 'Individualidad biológica (Mike Boyle).']
+      },
+      {
+        title: 'El Rol del PF',
+        items: ['Ajuste según necesidades y limitaciones.', 'Corrección constante durante la sesión.', 'No todos hacen lo mismo, sino lo que necesitan.']
+      }
+    ],
+    importantNote: 'Este plan NO incluye trabajo de campo ni fútbol.'
   },
   {
-    id: 'combinado-hibrido',
-    name: 'COMBINADO / HÍBRIDO',
-    subtitle: 'FUERZA + CAMPO DE JUEGO',
-    description: 'Estímulos de fuerza combinados con dinámica real de campo (ej. fútbol 5).',
-    features: [
-      'Fuerza y Resistencia',
-      'Coordinación',
-      'Juego y toma de decisiones',
+    id: 'combinado',
+    name: 'COMBINADO',
+    subtitle: 'GIMNASIO + CAMPO DE JUEGO',
+    shortDescription: 'La experiencia completa de un club de fútbol. Transferencia inmediata de la fuerza al juego real.',
+    mainFeatures: [
+      '30\' Gimnasio + 30\' Campo',
+      'Staff Completo (PF + DT + Coach)',
+      'Dinámica de Grupo (8 a 16 px)',
     ],
-    targetAudience: 'Deportistas recreativos que buscan entrenar de manera completa.',
+    targetAudience: 'Para deportistas que quieren entrenar como profesionales con aplicación directa al juego.',
     icon: 'TrophyIcon',
-  },
-  {
-    id: 'patrones',
-    name: 'PATRONES DE MOVIMIENTO',
-    subtitle: 'MOVERSE BIEN, RENDIR MEJOR',
-    description: 'Enfoque técnico en los patrones fundamentales.',
-    features: [
-      'Técnica de carrera',
-      'Cambios de dirección',
-      'Coordinación y control',
+    // Detalles del dorso basados en el WhatsApp
+    details: [
+      {
+        title: 'Estructura de la Sesión',
+        items: ['30 min de Fuerza en Gimnasio.', '30 min de Transferencia en Campo con pelota.', 'Lo que se entrena, se aplica.']
+      },
+      {
+        title: 'Staff Profesional',
+        items: ['Preparador Físico + Director Técnico.', 'Entrenador específico de Arqueros.', 'Mini charlas semanales de Coaching.']
+      }
     ],
-    targetAudience: 'Niños, jóvenes y deportistas construyendo base sólida.',
-    icon: 'ArrowPathIcon',
+    importantNote: 'Entrenamiento en grupos (Óptimo 12-16 jugadores).'
   },
 ];
 
 const PlansSection = () => {
   const [isHydrated, setIsHydrated] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-
+  
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
-  const handlePlanSelect = (planId: string) => {
-    setSelectedPlan(planId);
-  };
-
   return (
     <section id="planes" className="relative py-24 bg-gradient-to-b from-black to-card overflow-hidden">
-      {/* Estilos para la animación del texto (Ticker) */}
-      <style jsx>{`
+      
+      {/* Estilos CSS para el efecto FLIP 3D */}
+      <style jsx global>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        /* Animación del Ticker */
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -88,120 +117,101 @@ const PlansSection = () => {
             Planes de <span className="text-primary">Entrenamiento</span>
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-            Elige el formato que mejor se adapte a tus objetivos y estilo de juego
+            Dos caminos, un mismo objetivo: Tu máximo rendimiento.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        {/* CONTENEDOR DE PLANES - AHORA 2 COLUMNAS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={plan.id}
-              className={`relative flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden transition-all duration-300 ease-out group 
-                hover:border-primary hover:shadow-[0_0_40px_rgba(225,6,0,0.3)] hover:scale-105 hover:-translate-y-2 z-0 hover:z-10
-                ${selectedPlan === plan.id ? 'ring-2 ring-primary' : ''}`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group perspective-1000 w-full h-[600px] cursor-pointer" // Altura fija necesaria para el flip
             >
-              
-              {/* BADGE "SELECCIONAR" */}
-              <div className="absolute top-0 right-0 left-0 mx-auto w-fit bg-primary text-white font-cta font-bold text-xs px-6 py-1 rounded-b-lg uppercase tracking-wider shadow-lg transform -translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                SELECCIONAR
-              </div>
-
-              <div className="p-6 sm:p-8 flex-1 flex flex-col space-y-6">
+              {/* Inner Container que gira */}
+              <div className="relative w-full h-full transition-all duration-700 transform-style-3d group-hover:rotate-y-180 shadow-xl rounded-2xl">
                 
-                {/* Header */}
-                <div className="space-y-4">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 bg-white/10 border-2 border-transparent transition-all duration-300 group-hover:bg-primary/20 group-hover:border-primary">
-                    <Icon name={plan.icon as any} size={28} className="text-white transition-colors duration-300 group-hover:text-primary" variant="solid" />
-                  </div>
+                {/* === FRENTE DE LA TARJETA (FRONT) === */}
+                <div className="absolute inset-0 w-full h-full backface-hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col overflow-hidden">
+                   {/* Fondo decorativo sutil */}
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                   
+                   {/* Icono */}
+                   <div className="w-16 h-16 rounded-full bg-black/40 border border-white/10 flex items-center justify-center mb-6 text-primary">
+                      <Icon name={plan.icon as any} size={32} variant="solid" />
+                   </div>
 
-                  <div>
-                    <h3 className="font-headline font-black text-2xl text-white uppercase leading-tight">{plan.name}</h3>
-                    <p className="font-headline font-bold text-sm text-primary uppercase tracking-wide mt-2">{plan.subtitle}</p>
-                  </div>
+                   {/* Títulos */}
+                   <h3 className="font-headline font-black text-3xl text-white uppercase mb-2">{plan.name}</h3>
+                   <p className="font-accent font-bold text-sm text-primary uppercase tracking-widest mb-6">{plan.subtitle}</p>
 
-                  <p className="font-body text-sm text-gray-300 leading-relaxed border-b border-white/10 pb-4 min-h-[4.5rem] flex items-end">
-                    {plan.description}
-                  </p>
+                   {/* Descripción Corta */}
+                   <p className="font-body text-gray-300 mb-8 text-lg leading-relaxed">
+                     {plan.shortDescription}
+                   </p>
+
+                   {/* Features Principales */}
+                   <ul className="space-y-4 mb-auto">
+                      {plan.mainFeatures.map((feat, i) => (
+                        <li key={i} className="flex items-center space-x-3">
+                           <Icon name="CheckCircleIcon" size={20} className="text-primary" variant="solid" />
+                           <span className="font-body text-white">{feat}</span>
+                        </li>
+                      ))}
+                   </ul>
+
+                   {/* Call to Action Visual (Indicador de giro) */}
+                   <div className="mt-8 flex justify-center items-center text-muted-foreground text-sm font-body animate-pulse">
+                      <Icon name="ArrowPathIcon" size={16} className="mr-2" />
+                      <span>Pasá el mouse para ver detalles</span>
+                   </div>
                 </div>
 
-                {/* SE TRABAJA */}
-                <div className="space-y-3">
-                  <p className="font-headline font-bold text-sm text-white uppercase">SE TRABAJA:</p>
-                  <ul className="space-y-2">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <Icon name="CheckCircleIcon" size={18} className="text-primary flex-shrink-0 mt-0.5" variant="solid" />
-                        <span className="font-body text-sm text-gray-300">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* PARA QUIÉN */}
-                <div className="mt-auto pt-4">
-                  <div className="bg-white/5 border border-white/10 rounded-lg p-4 group-hover:border-primary/30 transition-colors duration-300">
-                    <p className="font-headline font-bold text-xs text-white uppercase mb-1">PARA QUIÉN:</p>
-                    <p className="font-body text-sm text-gray-400">
-                      {plan.targetAudience}
-                    </p>
-                  </div>
-                </div>
-
-                {/* INFO ENTRENAMIENTO + BOTÓN GOOGLE FORM */}
-                <div className="space-y-4 pt-2">
-                  <div className="bg-white/5 rounded-lg p-4 border border-white/5 space-y-3 group-hover:border-primary/30 transition-colors">
-                    
-                    {/* Frecuencia y Duración */}
-                    <div className="flex items-start space-x-3 border-b border-white/10 pb-3">
-                        <Icon name="ClockIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" variant="solid" />
-                        <div>
-                          <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-0.5">
-                             ELIGE TU ENTRENAMIENTO
-                          </p>
-                          <p className="font-headline font-bold text-white text-sm">
-                             2, 3, 4 o 5 veces por semana
-                          </p>
-                          <p className="font-body text-xs text-gray-400 mt-1">
-                             Duración: 60 minutos
-                          </p>
-                        </div>
+                {/* === DORSO DE LA TARJETA (BACK) === */}
+                <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black border border-primary/30 rounded-2xl p-8 flex flex-col overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+                    {/* Título Dorso */}
+                    <div className="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                       <h3 className="font-headline font-bold text-xl text-white">DETALLES TÉCNICOS</h3>
+                       <Icon name={plan.icon as any} size={24} className="text-white/20" />
                     </div>
 
-                    {/* FRANJAS HORARIAS */}
-                    <div>
-                        <p className="font-headline font-bold text-xs text-muted-foreground uppercase mb-2">
-                           FRANJAS HORARIAS
-                        </p>
-                        <div className="grid grid-cols-1 gap-1 text-xs text-gray-300 font-body">
-                          <div className="flex items-center space-x-2">
-                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                             <span>Mañana (8 a 12 hs)</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                             <span>Tarde (15 a 18 hs)</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                             <span>Noche (18 a 22 hs)</span>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
+                    {/* Contenido Detallado */}
+                    <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar">
+                       {plan.details.map((detail, i) => (
+                         <div key={i}>
+                            <h4 className="font-cta font-bold text-primary text-sm uppercase mb-2">{detail.title}</h4>
+                            <ul className="list-disc list-inside space-y-1">
+                               {detail.items.map((item, j) => (
+                                 <li key={j} className="font-body text-sm text-gray-300 leading-snug">
+                                   {item}
+                                 </li>
+                               ))}
+                            </ul>
+                         </div>
+                       ))}
 
-                  {isHydrated && (
-                    <a
-                      href="https://forms.gle/qtYAkNHNR8X5rrSx9"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => handlePlanSelect(plan.id)}
-                      data-cta={`plan-${plan.id}`}
-                      className="block w-full text-center py-3 rounded-lg font-cta font-bold text-sm uppercase tracking-wide transition-all duration-250 bg-transparent text-white border border-white/30 hover:border-primary hover:bg-primary hover:text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-cta cursor-pointer"
-                    >
-                      Pre-inscribirme
-                    </a>
-                  )}
+                       {plan.importantNote && (
+                         <div className="bg-primary/10 border border-primary/20 p-3 rounded-lg mt-4">
+                           <p className="font-body text-xs text-white">
+                             <span className="font-bold text-primary">⚠️ IMPORTANTE:</span> {plan.importantNote}
+                           </p>
+                         </div>
+                       )}
+                    </div>
+
+                    {/* Botón de Acción Real */}
+                    <div className="mt-6 pt-4 border-t border-white/10">
+                        {isHydrated && (
+                        <a
+                            href="https://forms.gle/C9mtn3mPsS368UMFA" // Link actualizado
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full text-center py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-cta font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-cta"
+                        >
+                            Solicitar este Plan
+                        </a>
+                        )}
+                    </div>
                 </div>
 
               </div>
@@ -209,30 +219,26 @@ const PlansSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* Botón General de Contacto */}
+        <div className="mt-20 text-center">
           <p className="font-body text-muted-foreground mb-4">
-            ¿Buscas algo más personalizado o tienes dudas?
+            ¿No sabés cuál elegir? Hablá con el equipo.
           </p>
-          
-          {/* BOTÓN WHATSAPP YA CONFIGURADO */}
           <a
             href="https://wa.me/5493876856439" 
             target="_blank" 
             rel="noopener noreferrer"
-            data-cta="plans-contact"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-lg rounded-lg transition-all duration-250 shadow-cta hover:shadow-none uppercase"
+            className="inline-flex items-center space-x-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white text-white font-cta font-bold text-lg rounded-lg transition-all duration-250 uppercase"
           >
             <Icon name="ChatBubbleLeftRightIcon" size={24} variant="solid" />
-            <span>Hablar con Victor</span>
+            <span>Consultar por WhatsApp</span>
           </a>
-
         </div>
 
-        {/* --- NUEVA BARRA DINÁMICA (TICKER) --- */}
-        <div className="mt-20 -mx-4 sm:-mx-6 lg:-mx-8 border-y border-white/10 bg-white/5 py-4 overflow-hidden relative">
+        {/* --- BARRA DINÁMICA (TICKER) --- */}
+        <div className="mt-24 -mx-4 sm:-mx-6 lg:-mx-8 border-y border-white/10 bg-white/5 py-4 overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"></div>
           <div className="animate-marquee whitespace-nowrap flex items-center">
-            {/* Contenido duplicado varias veces para crear el bucle infinito */}
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center">
                 <span className="mx-6 font-headline font-black text-xl text-white uppercase tracking-widest italic">
@@ -242,10 +248,7 @@ const PlansSection = () => {
                   RESERVA TU LUGAR
                 </span>
                 <span className="mx-6 font-headline font-black text-xl text-white uppercase tracking-widest italic">
-                  ⚡️ PRE-INSCRIPCIONES ABIERTAS
-                </span>
-                <span className="mx-6 font-cta font-bold text-sm text-primary uppercase tracking-widest">
-                  TU MEJOR VERSIÓN
+                  ⚡️ SISTEMA VC
                 </span>
               </div>
             ))}
