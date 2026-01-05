@@ -149,7 +149,7 @@ const PlansSection = () => {
             return (
               <div
                 key={plan.id}
-                className="perspective-1000 w-full h-[650px] cursor-pointer group"
+                className="perspective-1000 w-full h-[680px] cursor-pointer group" // Aumenté un poco la altura para los botones
                 onClick={() => handleCardClick(plan.id)}
               >
                 {/* Inner Container que gira */}
@@ -195,10 +195,11 @@ const PlansSection = () => {
 
                   {/* === DORSO DE LA TARJETA (BACK) === */}
                   <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black border border-primary rounded-2xl p-8 flex flex-col overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.15)]`}>
-                      {/* Título Dorso */}
+                      {/* Título Dorso + Botón Cerrar Superior */}
                       <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
                          <h3 className="font-headline font-bold text-xl text-white">INFORMACIÓN TÉCNICA</h3>
-                         <button className="text-gray-400 hover:text-white">
+                         <button className="text-gray-400 hover:text-white p-1">
+                            <span className="sr-only">Cerrar</span>
                             <Icon name="XMarkIcon" size={24} />
                          </button>
                       </div>
@@ -236,18 +237,29 @@ const PlansSection = () => {
                          )}
                       </div>
 
-                      {/* Botón de Acción Real - AHORA VISIBLE Y FIJO */}
-                      <div className="mt-4 pt-4 border-t border-white/10 z-20 bg-black">
+                      {/* --- ZONA DE BOTONES INFERIOR --- */}
+                      <div className="mt-4 pt-4 border-t border-white/10 z-20 bg-black flex flex-col-reverse sm:flex-row gap-3">
+                          
+                          {/* 1. Botón Volver (Secundario) */}
+                          <button
+                              // No necesita onClick porque el click se propaga al contenedor padre que cierra la tarjeta
+                              className="w-full sm:w-auto px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-cta font-bold uppercase tracking-wider transition-all text-sm flex items-center justify-center"
+                          >
+                              <Icon name="ArrowUturnLeftIcon" size={18} className="mr-2" /> {/* Asegúrate de tener este icono o usa ArrowLeftIcon */}
+                              Volver
+                          </button>
+
+                          {/* 2. Botón Inscribirme (Principal) */}
                           {isHydrated && (
                           <a
                               href="https://forms.gle/C9mtn3mPsS368UMFA" 
                               target="_blank"
                               rel="noopener noreferrer"
-                              // Detenemos la propagación para que el click no cierre la tarjeta
+                              // Detenemos la propagación para que el click en el enlace NO cierre la tarjeta
                               onClick={(e) => e.stopPropagation()} 
-                              className="block w-full text-center py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-cta font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-cta text-sm sm:text-base"
+                              className="flex-1 block w-full text-center py-3 sm:py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-cta font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-cta text-sm sm:text-base"
                           >
-                              Inscribirme a {plan.name}
+                              Inscribirme ahora
                           </a>
                           )}
                       </div>
