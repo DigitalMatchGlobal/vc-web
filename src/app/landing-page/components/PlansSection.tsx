@@ -52,7 +52,7 @@ const plans: Plan[] = [
         ]
       }
     ],
-    importantNote: 'Este plan es exclusivo de gimnasio. NO incluye trabajo de campo ni fútbol.'
+    importantNote: 'Este plan es exclusivo de gimnasio, con duracion de 60 minutos. NO incluye trabajo de campo ni fútbol.'
   },
   {
     id: 'combinado',
