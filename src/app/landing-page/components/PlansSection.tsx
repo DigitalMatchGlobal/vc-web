@@ -34,7 +34,7 @@ const plans: Plan[] = [
       'Atención a la Individualidad',
     ],
     icon: 'ShieldCheckIcon',
-    targetAudience: 'Ideal para personas que entrenan exclusivamente en gimnasio y buscan corrección técnica profesional.',
+    targetAudience: 'Ideal para personas de cualquier edad que entrenan exclusivamente en gimnasio y buscan corrección técnica profesional.',
     details: [
       {
         title: 'Qué trabajamos',
@@ -79,7 +79,7 @@ const plans: Plan[] = [
         title: 'Staff Profesional',
         items: [
             'Preparador Físico + Director Técnico.', 
-            'Entrenador específico de Arqueros.', 
+            'Arqueros: contamos con entrenador específico.', 
             'Mini charlas semanales de Coaching Deportivo.'
         ]
       }
