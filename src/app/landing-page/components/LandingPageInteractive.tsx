@@ -8,7 +8,7 @@ import ConversionTrackingWrapper from '@/components/common/ConversionTrackingWra
 import HeroSection from './HeroSection';
 import AuthoritySection from './AuthoritySection';
 import PhilosophySection from './PhilosophySection';
-// import TeamSection from './TeamSection'; // COMENTADO: Oculto temporalmente
+import TeamSection from './TeamSection';
 import ServicesSection from './ServicesSection';
 import PlansSection from './PlansSection';
 import MindsetSection from './MindsetSection';
@@ -17,13 +17,13 @@ import FAQSection from './FAQSection';
 // import ConversionSection from './ConversionSection'; 
 import Footer from './Footer';
 
-// CAMBIO: Se elimina 'equipo' de la lista de anclas
+// ✅ SECCIÓN EQUIPO ACTIVADA EN EL MENÚ
 const sections = [
   { id: 'inicio', offset: 0 },
   { id: 'sobre-mi', offset: 80 },
   { id: 'servicios', offset: 80 }, 
   { id: 'planes', offset: 80 },    
-  // { id: 'equipo', offset: 80 }, // COMENTADO
+  { id: 'equipo', offset: 80 }, // DESCOMENTADO
   { id: 'ubicacion', offset: 80 },
 ];
 
@@ -52,7 +52,7 @@ const LandingPageInteractive = () => {
   }, [isHydrated]);
 
   const handleWhatsAppClick = () => {
-    // ✅ NÚMERO ACTUALIZADO (sin el +)
+    // ✅ NÚMERO ACTUALIZADO
     const phoneNumber = '5493876856439';
     const message = encodeURIComponent('Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
@@ -85,10 +85,11 @@ const LandingPageInteractive = () => {
           <AuthoritySection />
           <PhilosophySection />
 
-          {/* ✅ ORDEN DE SECCIONES (TeamSection comentado) */}
           <ServicesSection />
           <PlansSection />
-          {/* <TeamSection /> */} 
+          
+          {/* ✅ SECCIÓN EQUIPO VISIBLE AHORA */}
+          <TeamSection /> 
           
           <MindsetSection />
           <LocationSection />
