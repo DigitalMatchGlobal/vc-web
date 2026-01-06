@@ -93,7 +93,7 @@ const teamMembers: TeamMember[] = [
   // 6. CRISTINA
   {
     id: 'cristina',
-    name: 'Cristina "Cris"',
+    name: 'Cristina "Cris" Vera',
     role: 'Administración',
     specialization: 'Gestión & Atención al Alumno',
     credentials: [
