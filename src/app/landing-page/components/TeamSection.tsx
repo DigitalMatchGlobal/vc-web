@@ -26,9 +26,9 @@ const teamMembers: TeamMember[] = [
       'Especialista en Alto Rendimiento',
       'Creador del Sistema VC'
     ],
-    image: "https://img.rocket.new/generatedImages/rocket_gen_img_164e47c23-1766527579610.png",
-    alt: 'Victor Cuellar director técnico',
-    icon: 'UserCircleIcon'
+    image: "/assets/images/victor-cuellar-team.jpg",
+    alt: 'Victor Cuellar Coordinador General',
+    icon: 'TrophyIcon' // 🏆 Liderazgo y Éxito
   },
   // 2. MARCELO
   {
@@ -41,9 +41,9 @@ const teamMembers: TeamMember[] = [
       'Coaching y Liderazgo Deportivo',
       'Técnica Individual'
     ],
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop", // Foto placeholder hombre
+    image: "/assets/images/marcelo-bejarano.jpg",
     alt: 'Entrenador Marcelo Bejarano',
-    icon: 'SparklesIcon'
+    icon: 'ShieldCheckIcon' // 🛡️ Defensa / Arqueros
   },
   // 3. AGUSTINA
   {
@@ -56,9 +56,9 @@ const teamMembers: TeamMember[] = [
       'Seguimiento de rutinas',
       'Atención al alumno en sala'
     ],
-    image: "https://img.rocket.new/generatedImages/rocket_gen_img_16d985030-1766759072489.png", // Foto placeholder mujer
+    image: "/assets/images/agustina-gutierrez.jpg",
     alt: 'Profesora Agustina Gutierrez',
-    icon: 'HeartIcon'
+    icon: 'BoltIcon' // ⚡ Energía y Potencia (Reemplaza al corazón)
   },
   // 4. ENZO
   {
@@ -71,9 +71,9 @@ const teamMembers: TeamMember[] = [
       'Trabajos de coordinación',
       'Dinámica de campo con pelota'
     ],
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop", // Foto placeholder hombre gym
+    image: "/assets/images/enzo-renfijes.jpg",
     alt: 'Preparador Físico Enzo Renfijes',
-    icon: 'BoltIcon' // Usamos Bolt (Rayo) para velocidad/potencia
+    icon: 'ChartBarIcon' // 📈 Rendimiento y Mejora Física
   },
   // 5. FEDERICO
   {
@@ -86,9 +86,9 @@ const teamMembers: TeamMember[] = [
       'Coordinación de materiales',
       'Asistencia al cuerpo técnico'
     ],
-    image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1374&auto=format&fit=crop", // Foto placeholder hombre
+    image: "/assets/images/federico-rodriguez.jpg",
     alt: 'Staff Federico Rodriguez',
-    icon: 'UserGroupIcon'
+    icon: 'ClipboardDocumentListIcon' // 📋 Organización y Planificación
   },
   // 6. CRISTINA
   {
@@ -101,9 +101,9 @@ const teamMembers: TeamMember[] = [
       'Atención y dudas administrativas',
       'Coordinación de horarios'
     ],
-    image: "https://img.rocket.new/generatedImages/rocket_gen_img_1d2544962-1763300714721.png", // Foto placeholder mujer administrativa
+    image: "/assets/images/cristina-admin.jpg",
     alt: 'Administradora Cristina',
-    icon: 'ChatBubbleLeftRightIcon'
+    icon: 'ChatBubbleLeftRightIcon' // 💬 Atención y Comunicación
   }
 ];
 
@@ -128,19 +128,20 @@ const TeamSection = () => {
               className="group bg-white/5 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden hover:border-primary transition-all duration-250 hover:shadow-[0_0_30px_rgba(225,6,0,0.3)]"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex flex-col sm:flex-row h-full"> {/* h-full para igualar alturas */}
+              <div className="flex flex-col sm:flex-row h-full">
                 
-                {/* Imagen */}
-                <div className="relative w-full sm:w-48 h-64 sm:h-auto flex-shrink-0 overflow-hidden">
+                {/* IMAGEN: Contenedor con Aspect Ratio fijo */}
+                <div className="relative w-full sm:w-48 aspect-[3/4] sm:aspect-auto sm:h-auto flex-shrink-0 overflow-hidden">
                   <AppImage
                     src={member.image}
                     alt={member.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-250" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-250" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 sm:opacity-100"></div>
+                  
+                  {/* Icono Flotante */}
                   <div className="absolute bottom-4 left-4">
                     <div className="w-12 h-12 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border border-primary">
-                      {/* Nota: Asegúrate de que los iconos existan en tu AppIcon, si 'BoltIcon' falla, usa 'CheckCircleIcon' */}
                       <Icon name={member.icon as any} size={24} className="text-primary" variant="solid" />
                     </div>
                   </div>
