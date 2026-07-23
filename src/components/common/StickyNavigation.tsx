@@ -34,7 +34,10 @@ const navigationItems: NavigationItem[] = [
   { id: 'ubicacion', label: 'Ubicación', href: '/#ubicacion', offset: 80 },
 ];
 
-const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
+// Portal / app de atletas
+const APP_URL = 'https://app.victorcuellar.fit/';
+
+const StickyNavigation = ({}: StickyNavigationProps) => {
   const [activeSection, setActiveSection] = useState<string>('inicio');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -95,18 +98,11 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
     }
   };
 
-  const handleWhatsAppClick = () => {
-    if (onWhatsAppClick) onWhatsAppClick();
-
-
-    const phoneNumber = '5493876856439';
-    const message = encodeURIComponent(
-      'Hola, estoy interesado en conocer más sobre el sistema de preparación física de Victor Cuellar.'
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
+  const handleAppClick = () => {
+    window.open(APP_URL, '_blank', 'noopener,noreferrer');
 
     if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'whatsapp_click', {
+      (window as any).gtag('event', 'app_login_click', {
         location: 'navigation',
         section: activeSection,
       });
@@ -161,11 +157,11 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
 
           <div className="flex items-center space-x-4">
             <button
-              onClick={handleWhatsAppClick}
+              onClick={handleAppClick}
               className="hidden sm:flex items-center space-x-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-sm rounded-lg transition-all duration-250 shadow-cta hover:shadow-none hover:border-2 hover:border-primary"
             >
-              <Icon name="ChatBubbleLeftRightIcon" size={20} variant="solid" />
-              <span>WhatsApp</span>
+              <Icon name="ArrowRightOnRectangleIcon" size={20} variant="solid" />
+              <span>Ingresar</span>
             </button>
 
             <button
@@ -198,11 +194,11 @@ const StickyNavigation = ({ onWhatsAppClick }: StickyNavigationProps) => {
             ))}
 
             <button
-              onClick={handleWhatsAppClick}
+              onClick={handleAppClick}
               className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-cta font-bold text-sm rounded-lg transition-all duration-250 shadow-cta"
             >
-              <Icon name="ChatBubbleLeftRightIcon" size={20} variant="solid" />
-              <span>Contactar por WhatsApp</span>
+              <Icon name="ArrowRightOnRectangleIcon" size={20} variant="solid" />
+              <span>Ingresar</span>
             </button>
           </div>
         </div>

@@ -144,7 +144,7 @@ const HeroSection = ({ onWhatsAppClick, onPreRegisterClick }: HeroSectionProps) 
 
             {/* --- BARRA DINÁMICA (TICKER) --- */}
             {ctaEntered && (
-              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden py-3 bg-black/40 border-y border-white/10 backdrop-blur-sm">
+              <div className="w-screen overflow-hidden py-3 bg-black/40 border-y border-white/10 backdrop-blur-sm">
                 <div className="animate-marquee whitespace-nowrap flex items-center">
                   {[...Array(10)].map((_, i) => (
                     <div key={i} className="flex items-center opacity-90">

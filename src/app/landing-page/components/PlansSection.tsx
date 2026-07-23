@@ -288,10 +288,10 @@ const PlansSection = () => {
         </div>
 
         {/* --- BARRA DINÁMICA (TICKER) --- */}
-        <div className="mt-24 -mx-4 sm:-mx-6 lg:-mx-8 border-y border-white/10 bg-white/5 py-4 overflow-hidden relative">
+        <div className="mt-24 w-screen relative left-1/2 -translate-x-1/2 border-y border-white/10 bg-white/5 py-4 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"></div>
           <div className="animate-marquee whitespace-nowrap flex items-center">
-            {[...Array(4)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <div key={i} className="flex items-center">
                 <span className="mx-6 font-headline font-black text-xl text-white uppercase tracking-widest italic">
                   ⚡️ CUPOS LIMITADOS
