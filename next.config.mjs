@@ -24,7 +24,16 @@ const nextConfig = {
       },
     ],
   },
-  // SE ELIMINÓ EL BLOQUE DE REDIRECTS QUE CAUSABA EL ERROR
+  // Las secciones de la landing son URLs limpias (sin #). Con estos rewrites,
+  // entrar directo o refrescar en /planes, /ubicacion, etc. sirve la home (/)
+  // y el cliente hace scroll a la sección correspondiente.
+  async rewrites() {
+    const sections = ['inicio', 'sobre-mi', 'servicios', 'planes', 'equipo', 'ubicacion'];
+    return sections.map((section) => ({
+      source: `/${section}`,
+      destination: '/',
+    }));
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.(jsx|tsx)$/,

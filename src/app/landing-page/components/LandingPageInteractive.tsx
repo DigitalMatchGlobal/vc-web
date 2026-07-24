@@ -38,17 +38,15 @@ const LandingPageInteractive = () => {
   useEffect(() => {
     if (!isHydrated) return;
 
-    const handleHashChange = () => {
-      const hash = window.location?.hash?.slice(1);
-      if (hash) {
-        setActiveSection(hash);
-      }
+    const syncActiveSection = () => {
+      const id = window.location?.pathname?.replace(/^\//, '') || 'inicio';
+      setActiveSection(id);
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
+    window.addEventListener('popstate', syncActiveSection);
+    syncActiveSection();
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('popstate', syncActiveSection);
   }, [isHydrated]);
 
   const handleWhatsAppClick = () => {

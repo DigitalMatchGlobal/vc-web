@@ -26,13 +26,22 @@ interface StickyNavigationProps {
  * 6. Ubicación
  */
 const navigationItems: NavigationItem[] = [
-  { id: 'inicio', label: 'Inicio', href: '/#inicio', offset: 0 },
-  { id: 'sobre-mi', label: 'Sobre mí', href: '/#sobre-mi', offset: 80 },
-  { id: 'servicios', label: 'Servicios', href: '/#servicios', offset: 80 },
-  { id: 'planes', label: 'Planes', href: '/#planes', offset: 80 },
-  { id: 'equipo', label: 'Equipo', href: '/#equipo', offset: 80 }, 
-  { id: 'ubicacion', label: 'Ubicación', href: '/#ubicacion', offset: 80 },
+  { id: 'inicio', label: 'Inicio', href: '/', offset: 0 },
+  { id: 'sobre-mi', label: 'Sobre mí', href: '/sobre-mi', offset: 80 },
+  { id: 'servicios', label: 'Servicios', href: '/servicios', offset: 80 },
+  { id: 'planes', label: 'Planes', href: '/planes', offset: 80 },
+  { id: 'equipo', label: 'Equipo', href: '/equipo', offset: 80 },
+  { id: 'ubicacion', label: 'Ubicación', href: '/ubicacion', offset: 80 },
 ];
+
+// Paths que representan la landing (la home y cada sección con URL limpia).
+// Sirve para saber si estamos "en la página que scrollea".
+const SECTION_PATHS = new Set(navigationItems.map((item) => `/${item.id}`));
+const isLandingPath = (path: string) =>
+  path === '/' || path === '' || SECTION_PATHS.has(path);
+
+// URL limpia de cada sección: inicio = "/", el resto = "/<id>".
+const pathForSection = (id: string) => (id === 'inicio' ? '/' : `/${id}`);
 
 // Portal / app de atletas
 const APP_URL = 'https://app.victorcuellar.fit/';
@@ -51,7 +60,7 @@ const StickyNavigation = ({}: StickyNavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      if (window.location.pathname === '/' || window.location.pathname === '') {
+      if (isLandingPath(window.location.pathname)) {
         const scrollPosition = window.scrollY + NAV_HEIGHT + ACTIVE_MARGIN;
 
         for (let i = navigationItems.length - 1; i >= 0; i--) {
@@ -72,7 +81,7 @@ const StickyNavigation = ({}: StickyNavigationProps) => {
   }, []);
 
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, item: NavigationItem) => {
-    if (window.location.pathname === '/' || window.location.pathname === '') {
+    if (isLandingPath(window.location.pathname)) {
       e.preventDefault();
       setIsMenuOpen(false);
 
@@ -85,7 +94,7 @@ const StickyNavigation = ({}: StickyNavigationProps) => {
           behavior: 'smooth',
         });
 
-        window.history.pushState(null, '', `/#${item.id}`);
+        window.history.pushState(null, '', pathForSection(item.id));
         setActiveSection(item.id);
       }
     } else {
@@ -141,7 +150,7 @@ const StickyNavigation = ({}: StickyNavigationProps) => {
           <div className="flex items-center justify-between h-20">
             {/* LOGO OFICIAL */}
             <Link
-              href="/#inicio"
+              href="/"
               onClick={(e) => handleNavClick(e, navigationItems[0])}
               className="flex items-center group shrink-0"
               aria-label="Ir a inicio"
@@ -168,7 +177,7 @@ const StickyNavigation = ({}: StickyNavigationProps) => {
                   className={`px-4 py-2 rounded-lg font-body font-semibold text-sm transition-all duration-250 ${
                     mounted &&
                     activeSection === item.id &&
-                    (window.location.pathname === '/' || window.location.pathname === '')
+                    isLandingPath(window.location.pathname)
                       ? 'text-primary bg-primary/10 border-b-2 border-primary'
                       : 'text-muted-foreground hover:text-white hover:bg-muted'
                   }`}

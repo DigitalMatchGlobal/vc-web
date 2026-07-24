@@ -13,11 +13,12 @@ interface SectionAnchorSystemProps {
 
 const SectionAnchorSystem = ({ sections }: SectionAnchorSystemProps) => {
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (!hash) return;
+    // Scroll a la sección que indica el path (carga directa, refresh, back/forward).
+    const scrollToPath = () => {
+      const id = window.location.pathname.replace(/^\//, '');
+      if (!id) return; // "/" = inicio, no hace falta scrollear
 
-      const section = sections.find(s => s.id === hash);
+      const section = sections.find(s => s.id === id);
       if (!section) return;
 
       const element = document.getElementById(section.id);
@@ -32,13 +33,12 @@ const SectionAnchorSystem = ({ sections }: SectionAnchorSystemProps) => {
       }, 100);
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    // Solo ejecutamos esto si hay un hash real, para evitar saltos innecesarios al cargar
-    if (window.location.hash) {
-      handleHashChange();
-    }
+    // popstate cubre back/forward del navegador entre secciones.
+    window.addEventListener('popstate', scrollToPath);
+    // Al cargar, si el path apunta a una sección, scrolleamos hasta ella.
+    scrollToPath();
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('popstate', scrollToPath);
   }, [sections]);
 
   useEffect(() => {
@@ -52,18 +52,13 @@ const SectionAnchorSystem = ({ sections }: SectionAnchorSystemProps) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          
-          // MODIFICACIÓN CLAVE:
-          // Si la sección es "inicio", limpiamos el hash de la URL.
-          // Si es cualquier otra sección, actualizamos el hash.
-          if (sectionId === 'inicio') {
-            // Reemplazamos la URL actual por la misma pero sin el hash
-             window.history.replaceState(null, '', window.location.pathname);
-          } else {
-            const newHash = `#${sectionId}`;
-            if (window.location.hash !== newHash) {
-              window.history.replaceState(null, '', newHash);
-            }
+
+          // Actualizamos la URL (sin #) a medida que scrolleás:
+          // inicio = "/", el resto = "/<id>". Usamos replaceState para no
+          // llenar el historial mientras se hace scroll.
+          const newPath = sectionId === 'inicio' ? '/' : `/${sectionId}`;
+          if (window.location.pathname !== newPath) {
+            window.history.replaceState(null, '', newPath);
           }
 
           if (typeof window !== 'undefined' && window.gtag) {
