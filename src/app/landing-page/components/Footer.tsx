@@ -106,12 +106,35 @@
             {/* Barra Inferior */}
             <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-body text-sm text-muted-foreground text-center md:text-left">
-                © {currentYear} <a href="https://www.digitalmatchglobal.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-bold">Digital Match Global</a>. All rights reserved.
+                © {currentYear} <span className="font-bold text-white">Victor Cuellar</span>. All rights reserved.
             </p>
             
-            <div className="flex items-center space-x-2 opacity-50 hover:opacity-100 transition-opacity">
-                <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Powered by DMG</span>
-            </div>
+            {/* --- FIRMA DIGITAL MATCH GLOBAL --- */}
+            <a
+                href="https://www.digitalmatchglobal.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Desarrollado por DigitalMatchGlobal"
+                className="group relative flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-[#6D5DFE]/50 transition-all duration-500 overflow-hidden"
+            >
+                {/* Brillo (sweep) en hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#6D5DFE]/20 to-transparent -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1000" />
+
+                <span className="relative text-[10px] text-gray-400 uppercase tracking-wider font-semibold group-hover:text-gray-200 transition-colors">
+                    Made by
+                </span>
+
+                <span className="relative text-xs font-bold bg-gradient-to-r from-[#2563EB] to-[#6D5DFE] bg-clip-text text-transparent transition-all duration-300 group-hover:brightness-125">
+                    DigitalMatchGlobal
+                </span>
+
+                <Icon
+                    name="BoltIcon"
+                    size={13}
+                    variant="solid"
+                    className="relative text-gray-400 group-hover:text-[#6D5DFE] transition-colors duration-300"
+                />
+            </a>
             </div>
         </div>
         </footer>
